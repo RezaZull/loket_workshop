@@ -11,6 +11,9 @@ export default function Register() {
         name: '',
         email: '',
         password: '',
+        npm:'',
+        major:'',
+        phone:'',
         password_confirmation: '',
     });
 
@@ -63,6 +66,59 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="npm" value="NPM" />
+
+                    <TextInput
+                        id="npm"
+                        type="text"
+                        name="npm"
+                        value={data.npm}
+                        className="mt-1 block w-full"
+                        autoComplete="npm"
+                        onChange={(e) => setData('npm', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.npm} className="mt-2" />
+                </div>
+
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="phone" value="No Telepon" />
+
+                    <TextInput
+                        id="phone"
+                        type="text"
+                        name="phone"
+                        value={data.phone}
+                        className="mt-1 block w-full"
+                        autoComplete="phone"
+                        onChange={(e) => setData('phone', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.phone} className="mt-2" />
+                </div>
+
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="major" value="Jurusan" />
+
+                    <TextInput
+                        id="major"
+                        type="text"
+                        name="major"
+                        value={data.major}
+                        className="mt-1 block w-full"
+                        autoComplete="username"
+                        onChange={(e) => setData('major', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.major} className="mt-2" />
                 </div>
 
                 <div className="mt-4">

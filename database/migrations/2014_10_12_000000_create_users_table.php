@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('major');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('img_id')->references('id')->on('images');

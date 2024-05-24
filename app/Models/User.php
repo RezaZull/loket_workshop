@@ -42,8 +42,8 @@ class User extends Authenticatable
      * @var array<string, string>
      */
 
-    public function Auth(): BelongsTo{
-        return $this->belongsTo(Auth::class,'npm','npm');
+    public function AuthModel(): BelongsTo{
+        return $this->belongsTo(AuthModel::class,'npm','npm');
     }
     public function Image():HasOne{
         return $this->hasOne(Image::class,'id','img_id');
