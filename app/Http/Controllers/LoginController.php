@@ -70,6 +70,7 @@ class LoginController extends Controller
                 'email'=>$request->email,
                 'phone'=>$request->phone,
                 'major'=>$request->major,
+                'img_path'=>'/user_profile/default.jpg'
             ]);
             AuthModel::create([
                 'npm'=>$request->npm,

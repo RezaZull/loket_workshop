@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('npm',8)->unique();
-            $table->unsignedBigInteger('img_id');
+            $table->string('img_path');
             $table->string('email');
             $table->string('phone');
             $table->string('major');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('img_id')->references('id')->on('images');
         });
     }
 

@@ -17,12 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('workshop_id');
             $table->string('virtual_account');
             $table->string('status');
-            $table->unsignedBigInteger('va_img_id');
+            $table->string('img_path');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('workshop_id')->references('id')->on('workshops');
-            $table->foreign('va_img_id')->references('id')->on('images');
         });
     }
 
