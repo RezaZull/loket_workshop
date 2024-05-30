@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Auth;
+use App\Http\Controllers\Controller;
+use App\Models\UserAttend;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
-class AuthController extends Controller
+class UserAttendController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -35,7 +35,7 @@ class AuthController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Auth $auth)
+    public function show(UserAttend $userAttend)
     {
         //
     }
@@ -43,7 +43,7 @@ class AuthController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Auth $auth)
+    public function edit(UserAttend $userAttend)
     {
         //
     }
@@ -51,7 +51,7 @@ class AuthController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Auth $auth)
+    public function update(Request $request, UserAttend $userAttend)
     {
         //
     }
@@ -59,7 +59,7 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Auth $auth)
+    public function destroy(UserAttend $userAttend)
     {
         //
     }

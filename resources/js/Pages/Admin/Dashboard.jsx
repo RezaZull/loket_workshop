@@ -1,9 +1,10 @@
+import AdminLayout from '@/Layouts/AdminLayout';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Dashboard({ auth }) {
     return (
-        <>
+        <AdminLayout auth={auth} >
             <Head title="Dashboard" />
 
             <div className="py-12">
@@ -13,6 +14,6 @@ export default function Dashboard({ auth }) {
                     </div>
                 </div>
             </div>
-        </>
+        </AdminLayout>
     );
 }

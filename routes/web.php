@@ -3,12 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomAdmin;
 use App\Http\Controllers\CustomUser;
-use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserAttendController;
-use App\Http\Controllers\WorkshopController;
-use App\Http\Controllers\WorkshopMajorController;
+use App\Http\Controllers\Admin\UserAttendController;
+use App\Http\Controllers\Admin\WorkshopController;
+use App\Http\Controllers\Admin\WorkshopMajorController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -51,12 +49,9 @@ Route::get('/register', [LoginController::class, 'register'])->name('register');
 
 
 Route::group(['middleware'=>'Admin','prefix'=>'admin','name'=>'admin.'],function () {
-    Route::resource('/auth', AuthController::class);
-    Route::resource('/image', ImageController::class);
     Route::resource('/user', UserAttendController::class);
     Route::resource('/workshop', WorkshopController::class);
     Route::resource('/userattend', UserAttendController::class);
-    Route::resource('/workshopmajor', WorkshopMajorController::class);
     Route::get('/dashboard', [CustomAdmin::class, 'ShowDashboard']);
 });
 Route::group(['middleware'=>'User','name'=>'user.'],function () {

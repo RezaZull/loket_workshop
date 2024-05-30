@@ -348,6 +348,6 @@ export default {
                 },
             }),
         },
-        plugins: [forms, require("tailwindcss-rtl")]
-    }
+    },
+    plugins: [forms,require('daisyui'),]
 };

@@ -19,13 +19,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
         'npm',
         'phone',
-        'major',
-        'img_path'
+        'study_program',
+        'img_path',
+        'password',
+        'is_admin'
     ];
 
     /**
@@ -34,15 +37,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
+     protected $hidden=['password','is_admin'];
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-
-    public function AuthModel(): BelongsTo{
-        return $this->belongsTo(AuthModel::class,'npm','npm');
-    }
     public function UserAttend():BelongsTo{
         return $this->belongsTo(UserAttend::class,'user_id','id');
     }

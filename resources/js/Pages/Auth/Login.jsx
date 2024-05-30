@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import InputError from '@/Components/InputError';
 import { Head, Link, useForm } from '@inertiajs/react';
-import InputField from "@/Components/fields/InputField";
 import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Login({ status, canResetPassword }) {
@@ -43,7 +42,7 @@ export default function Login({ status, canResetPassword }) {
                                 Sign In
                             </h4>
                             {/* NPM */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="NPM*"
@@ -55,10 +54,11 @@ export default function Login({ status, canResetPassword }) {
                                 autoComplete="username"
                                 isFocused={true}
                                 value={data.npm}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.npm} className="mt-2" />
                             {/* PASSWORD */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="Password*"
@@ -68,9 +68,10 @@ export default function Login({ status, canResetPassword }) {
                                 value={data.password}
                                 autoComplete="current-password"
                                 onChange={(e) => setData('password', e.target.value)}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.password} className="mt-2" />
-                            <button disabled={processing} className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
+                            <button disabled={processing} className="linear mt-2 w-full rounded-xl bg-blue-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-blue-600 active:bg-blue-700 dark:bg-blue-400 dark:text-white dark:hover:bg-blue-300 dark:active:bg-blue-200">
                                 Sign In
                             </button>
                         </form>
@@ -80,7 +81,7 @@ export default function Login({ status, canResetPassword }) {
                             </span>
                             <a
                                 href="/register"
-                                className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
+                                className="ml-1 text-sm font-medium text-blue-500 hover:text-blue-600 dark:text-white"
                             >
                                 Buat akun
                             </a>

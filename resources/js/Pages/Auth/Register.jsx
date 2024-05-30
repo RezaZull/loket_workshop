@@ -5,7 +5,6 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-import InputField from "@/Components/fields/InputField";
 import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Register() {
@@ -14,7 +13,7 @@ export default function Register() {
         email: '',
         password: '',
         npm: '',
-        major: '',
+        study_program: '',
         phone: '',
         password_confirmation: '',
     });
@@ -51,7 +50,7 @@ export default function Register() {
                                 Register
                             </h4>
                             {/* Name */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="Nama*"
@@ -63,11 +62,12 @@ export default function Register() {
                                 autoComplete="name"
                                 isFocused={true}
                                 value={data.name}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.name} className="mt-2" />
 
                             {/* NPM */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="NPM*"
@@ -78,11 +78,12 @@ export default function Register() {
                                 name="npm"
                                 autoComplete="npm"
                                 value={data.npm}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.npm} className="mt-2" />
 
                             {/* Email */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="Email*"
@@ -93,11 +94,12 @@ export default function Register() {
                                 name="email"
                                 autoComplete="email"
                                 value={data.email}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.email} className="mt-2" />
 
                             {/* no telepon */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="No Telepon*"
@@ -108,27 +110,29 @@ export default function Register() {
                                 name="phone"
                                 autoComplete="phone"
                                 value={data.phone}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.phone} className="mt-2" />
 
                             {/* jurusan */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="Jurusan*"
                                 placeholder="Jurusan kuliah"
-                                id="major"
+                                id="study_program"
                                 type="text"
-                                onChange={(e) => setData('major', e.target.value)}
-                                name="major"
-                                autoComplete="major"
+                                onChange={(e) => setData('study_program', e.target.value)}
+                                name="study_program"
+                                autoComplete="study_program"
                                 isFocused={true}
-                                value={data.major}
+                                value={data.study_program}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
-                            <InputError message={errors.major} className="mt-2" />
+                            <InputError message={errors.study_program} className="mt-2" />
 
                             {/* PASSWORD */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="Password*"
@@ -138,12 +142,13 @@ export default function Register() {
                                 value={data.password}
                                 autoComplete="current-password"
                                 onChange={(e) => setData('password', e.target.value)}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.password} className="mt-2" />
 
 
                             {/* NPM */}
-                            <InputField
+                            <input
                                 variant="auth"
                                 extra="mb-3"
                                 label="Konfirmasi Password*"
@@ -153,6 +158,7 @@ export default function Register() {
                                 onChange={(e) => setData('password_confirmation', e.target.value)}
                                 name="password_confirmation"
                                 value={data.password_confirmation}
+                                className='mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none'
                             />
                             <InputError message={errors.password_confirmation} className="mt-2" />
 

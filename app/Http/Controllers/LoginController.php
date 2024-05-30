@@ -59,26 +59,20 @@ class LoginController extends Controller
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone'=>'required|max:13',
-            'major'=>'required'
+            'study_program'=>'required'
         ]);
-
-
-        DB::beginTransaction();
             User::create([
+                'name'=>$request->name,
                 'npm'=>$request->npm,
                 'img_id'=>'1',
                 'email'=>$request->email,
                 'phone'=>$request->phone,
-                'major'=>$request->major,
-                'img_path'=>'/user_profile/default.jpg'
-            ]);
-            AuthModel::create([
-                'npm'=>$request->npm,
+                'study_program'=>$request->study_program,
+                'img_path'=>'/user_profile/default.jpg',
                 'password'=>Hash::make($request->input('password')),
                 'is_admin'=>0
             ]);
-        DB::commit();
-        return redirect()->route('login')->with('status','gagal login');
+        return redirect()->route('login');
     }
 
     public function logout(){

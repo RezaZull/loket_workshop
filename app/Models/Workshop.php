@@ -12,8 +12,5 @@ class Workshop extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable=['name','date','detail','img_path','workshop_major_id'];
-    public function WorkshopMajor():HasMany{
-        return $this->hasMany(WorkshopMajor::class,'id','workshop_major_id');
-    }
+    protected $fillable=['name','date','detail','img_path','study_program'];
 }

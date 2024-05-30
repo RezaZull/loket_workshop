@@ -17,10 +17,9 @@ return new class extends Migration
             $table->date('date');
             $table->text('detail');
             $table->string('img_path');
-            $table->unsignedBigInteger('workshop_major_id');
+            $table->string('study_program');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('workshop_major_id')->references('id')->on('workshop_majors');
         });
     }
 
