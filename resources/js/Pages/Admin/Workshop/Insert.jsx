@@ -19,7 +19,6 @@ export default function Insert(props) {
             study_program,
             imagesPick
         }
-        console.log(data)
         router.post('/admin/workshop/', data, { forceFormData: true })
     }
     return (

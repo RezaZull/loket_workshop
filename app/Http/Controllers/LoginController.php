@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AuthModel;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -68,7 +66,7 @@ class LoginController extends Controller
                 'email'=>$request->email,
                 'phone'=>$request->phone,
                 'study_program'=>$request->study_program,
-                'img_path'=>'/user_profile/default.jpg',
+                'img_path'=>'user/default.png',
                 'password'=>Hash::make($request->input('password')),
                 'is_admin'=>0
             ]);

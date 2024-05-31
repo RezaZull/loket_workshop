@@ -1,5 +1,5 @@
 
-export default function Guest({ children }) {
+export default function Guest({ children,auth }) {
     return (
         <div className="flex min-h-screen">
 
@@ -10,21 +10,21 @@ export default function Guest({ children }) {
                         Logo
                     </a>
                     <div className="my-2">
-                    <h2 className='text-xl'>Hallo User</h2>
-                    <h3 className='text-gray-700' >user@email</h3>
+                    <h2 className='text-xl'>Hallo {auth.name}</h2>
+                    <h3 className='text-gray-700' >{auth.email}</h3>
                     </div>
                 </div>
 
                 <div class="mb-10">
-                    <a href="/" class="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
+                    <a href="/dashboard" class="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
                         Dashboard
                     </a>
 
-                    <a href="/" className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
+                    <a href="/workshop" className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
                         Workshop
                     </a>
 
-                    <a href="/" className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
+                    <a href="/attended" className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
                         Workshop Diikuti
                     </a>
 

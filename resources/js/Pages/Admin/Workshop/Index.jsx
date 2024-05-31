@@ -3,7 +3,6 @@ import { Link } from "@inertiajs/inertia-react"
 import { Head, router } from "@inertiajs/react";
 import React from "react"
 export default function Index(props) {
-    console.log(props)
     let { data } = props;
 
     return (

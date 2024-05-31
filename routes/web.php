@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserSettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomAdmin;
 use App\Http\Controllers\CustomUser;
@@ -49,10 +50,11 @@ Route::get('/register', [LoginController::class, 'register'])->name('register');
 
 
 Route::group(['middleware'=>'Admin','prefix'=>'admin','name'=>'admin.'],function () {
-    Route::resource('/user', UserAttendController::class);
+    Route::resource('/user', UserSettingController::class);
     Route::resource('/workshop', WorkshopController::class);
     Route::resource('/userattend', UserAttendController::class);
     Route::get('/dashboard', [CustomAdmin::class, 'ShowDashboard']);
+    Route::get('/profile',[CustomAdmin::class,'ShowProfile']);
 });
 Route::group(['middleware'=>'User','name'=>'user.'],function () {
     Route::get('/dashboard', [CustomUser::class, 'ShowDashboard'])->name('dashboard');
