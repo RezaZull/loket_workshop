@@ -29,7 +29,7 @@ export default function AdminLayout({ children,auth }) {
                         User Setting
                     </a>
 
-                    <a href={`/admin/profile/${user.id}`} className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
+                    <a href={`/admin/profile`} className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
                         Profile
                     </a>
 

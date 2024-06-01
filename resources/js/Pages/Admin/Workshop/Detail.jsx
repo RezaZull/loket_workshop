@@ -21,9 +21,27 @@ export default function Detail(props) {
                     </div>
                 </div>
 
-                <div className="card shadow-xl p-5">
-                    <h2 className="text-xl">Mahasiswa Yang Mengikuti</h2>
+                <div className="card flex flex-col shadow-xl p-5">
+                    <div className="overflow-x-auto w-full  flex flex-col justify-between">
+                        <h2>Data Mahasiswa</h2>
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                    <th>Jurusan</th>
+                                    <th>Detail Workshop</th>
+                                    <th colSpan={2}>Setting</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
+
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
 
             </div>

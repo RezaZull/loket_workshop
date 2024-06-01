@@ -24,13 +24,13 @@ export default function Insert(props) {
             study_program,
             imagesPick,
         }
-        router.post(`/admin/user/${props.data.id}`, data, { forceFormData: true })
+        router.post(`/admin/profile/edit/${props.data.id}`, data, { forceFormData: true })
     }
     return (
         <AdminLayout auth={props.auth}>
             <Head title={props.title} />
             <div className="card bg-base-100 shadow-xl p-5">
-                <h1 className="text-2xl text-center" >Formulir Mengubah User</h1>
+                <h1 className="text-2xl text-center" >Formulir Mengubah Profile</h1>
                 <div>
                     <label className="form-control w-full ">
                         <div className="label">
@@ -96,7 +96,7 @@ export default function Insert(props) {
                         <input type="file" accept="image/*" onChange={(e) => setImagePick(e.target.files[0])} className="file-input file-input-bordered w-full " />
                     </label>
                     <div className="flex gap-4 justify-end">
-                        <Link href="/admin/user" className="btn btn-error" >Cancel</Link>
+                        <Link href="/admin/profile" className="btn btn-error" >Cancel</Link>
                         <button onClick={onSubmitUser} type="submit" className="btn btn-success">Submit</button>
                     </div>
                 </div>

@@ -55,6 +55,10 @@ Route::group(['middleware'=>'Admin','prefix'=>'admin','name'=>'admin.'],function
     Route::resource('/userattend', UserAttendController::class);
     Route::get('/dashboard', [CustomAdmin::class, 'ShowDashboard']);
     Route::get('/profile',[CustomAdmin::class,'ShowProfile']);
+    Route::get('/profile/{user}/edit',[CustomAdmin::class,'EditProfile']);
+    Route::put('/profile/edit/{user}',[CustomAdmin::class,'ProcessEditProfile']);
+    Route::get('/profile/{user}/changepassword',[CustomAdmin::class,'ChangePassword']);
+    Route::put('/profile/changepassword/{user}',[CustomAdmin::class,'ProcessChangePassword']);
 });
 Route::group(['middleware'=>'User','name'=>'user.'],function () {
     Route::get('/dashboard', [CustomUser::class, 'ShowDashboard'])->name('dashboard');
