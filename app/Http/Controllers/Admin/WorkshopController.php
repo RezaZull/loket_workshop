@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserAttend;
 use App\Models\Workshop;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -64,9 +65,11 @@ class WorkshopController extends Controller
      */
     public function show(Workshop $workshop)
     {
+        $dataAttend = UserAttend::with('User')->where('workshop_id','=',$workshop->id)->paginate(5);
         return Inertia::render('Admin/Workshop/Detail', [
             'title' => $workshop->name,
-            'data' => $workshop
+            'data' => $workshop,
+            'usersAttend'=>$dataAttend
         ]);
     }
 

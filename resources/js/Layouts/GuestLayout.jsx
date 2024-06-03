@@ -1,11 +1,11 @@
 
-export default function Guest({ children,auth }) {
+export default function GuestLayout({ children,auth }) {
     return (
         <div className="flex min-h-screen">
 
-            <div class="w-64 bg-gray-50 border-r border-gray-200">
+            <div className="w-64 bg-gray-50 border-r border-gray-200">
 
-                <div class="py-4 px-6">
+                <div className="py-4 px-6">
                     <a href="/">
                         Logo
                     </a>
@@ -15,8 +15,8 @@ export default function Guest({ children,auth }) {
                     </div>
                 </div>
 
-                <div class="mb-10">
-                    <a href="/dashboard" class="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
+                <div className="mb-10">
+                    <a href="/dashboard" className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
                         Dashboard
                     </a>
 
@@ -28,6 +28,10 @@ export default function Guest({ children,auth }) {
                         Workshop Diikuti
                     </a>
 
+                    <a href="/profile" className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
+                        Profile
+                    </a>
+
                     <a href="/logout" className="flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group">
                         Logout
                     </a>
@@ -36,8 +40,8 @@ export default function Guest({ children,auth }) {
 
             </div>
             {/* main */}
-            <div class="flex-1">
-                <main>
+            <div className="flex-1">
+                <main className="p-6" >
 
 
                     {children}

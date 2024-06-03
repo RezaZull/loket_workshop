@@ -3,7 +3,6 @@ import { Head, Link, router } from "@inertiajs/react";
 
 export default function Index(props) {
     let { title, auth, data } = props
-    console.log(data)
     return (
         <AdminLayout auth={auth} >
             <Head title={title} />

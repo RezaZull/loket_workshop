@@ -1,5 +1,5 @@
 import InputError from "@/Components/InputError"
-import AdminLayout from "@/Layouts/AdminLayout"
+import GuestLayout from "@/Layouts/GuestLayout"
 import { Head, Link, router } from "@inertiajs/react"
 import { useState } from "react"
 
@@ -16,10 +16,10 @@ export default function Insert(props) {
             newPassword,
             newPassword_confirmation,
         }
-        router.post(`/admin/profile/changepassword/${props.data.id}`, data, { forceFormData: true })
+        router.post(`/profile/changepassword/${props.data.id}`, data, { forceFormData: true })
     }
     return (
-        <AdminLayout auth={props.auth}>
+        <GuestLayout auth={props.auth}>
             <Head title={props.title} />
             <div className="card bg-base-100 shadow-xl p-5">
                 <h1 className="text-2xl text-center" >Formulir Mengubah Password</h1>
@@ -52,12 +52,12 @@ export default function Insert(props) {
                         </div>
                     </label>
                     <div className="flex gap-4 justify-end">
-                        <Link href="/admin/profile" className="btn btn-error" >Cancel</Link>
+                        <Link href="/profile" className="btn btn-error" >Cancel</Link>
                         <button onClick={onSubmitUser} type="submit" className="btn btn-success">Submit</button>
                     </div>
                 </div>
 
             </div>
-        </AdminLayout>
+        </GuestLayout>
     )
 }

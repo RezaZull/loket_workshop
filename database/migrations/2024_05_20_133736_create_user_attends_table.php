@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('workshop_id');
-            $table->string('virtual_account');
-            $table->string('status');
-            $table->string('img_path');
+            $table->string('virtual_account')->nullable();
+            $table->enum('status',['menunggu VA','menunggu Konfirmasi','Terdaftar']);
+            $table->string('img_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

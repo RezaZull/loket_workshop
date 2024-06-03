@@ -62,6 +62,17 @@ Route::group(['middleware'=>'Admin','prefix'=>'admin','name'=>'admin.'],function
 });
 Route::group(['middleware'=>'User','name'=>'user.'],function () {
     Route::get('/dashboard', [CustomUser::class, 'ShowDashboard'])->name('dashboard');
+
+    Route::get('/workshop',[CustomUser::class,'ShowWorkshop']);
+    Route::post('/workshop',[CustomUser::class,'ProcessWorkshop']);
+
+    Route::get('/attended',[CustomUser::class,'ShowAttended']);
+
+    Route::get('/profile',[CustomUser::class,'ShowProfile']);
+    Route::get('/profile/{user}/edit',[CustomUser::class,'EditProfile']);
+    Route::put('/profile/edit/{user}',[CustomUser::class,'ProcessEditProfile']);
+    Route::get('/profile/{user}/changepassword',[CustomUser::class,'ChangePassword']);
+    Route::put('/profile/changepassword/{user}',[CustomUser::class,'ProcessChangePassword']);
 });
 
 require __DIR__ . '/auth.php';

@@ -1,10 +1,11 @@
-import AdminLayout from "@/Layouts/AdminLayout"
+import GuestLayout from "@/Layouts/GuestLayout"
 import { Head, Link } from "@inertiajs/react"
 
 export default function Index(props) {
-    let { auth } = props
+    let { auth, data } = props
+    console.log(props)
     return (
-        <AdminLayout auth={auth}>
+        <GuestLayout auth={auth}>
             <Head title={props.title} />
             <div className="flex flex-col gap-8">
                 <div className="flex w-full">
@@ -25,34 +26,47 @@ export default function Index(props) {
                         <h2> Jurusan : {auth.user.study_program}</h2>
                         <h2 className="badge badge-primary badge-lg" >{auth.user.is_admin == 1 ? 'Admin' : 'User'}</h2>
                         <div className="join self-end ">
-                            <Link href={`/admin/profile/${auth.user.id}/edit`} className="btn btn-info join-item">Edit</Link>
-                            <Link href={`/admin/profile/${auth.user.id}/changepassword`} className="btn btn-primary join-item">Ubah Password</Link>
+                            <Link href={`/profile/${auth.user.id}/edit`} className="btn btn-info join-item">Edit</Link>
+                            <Link href={`/profile/${auth.user.id}/changepassword`} className="btn btn-primary join-item">Ubah Password</Link>
                         </div>
                     </div>
                 </div>
-                {/* <div className="card flex flex-col shadow-xl p-5">
-                    <div className="overflow-x-auto w-full  flex flex-col justify-between">
+                <div className="card flex flex-col shadow-xl p-5">
+                    <div className="overflow-x-auto w-full gap-4 flex flex-col justify-between">
                         <h2>Data Workshop</h2>
                         <table className="table w-full">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
+                                    <th>Workshop</th>
                                     <th>Date</th>
-                                    <th>Jurusan</th>
-                                    <th>Detail Workshop</th>
-                                    <th colSpan={2}>Setting</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                {data.data.map((item, idx) => {
+                                    return (
+                                        <tr key={idx} >
+                                            <td>{idx + 1}</td>
+                                            <td>{item.workshop.name}</td>
+                                            <td>{item.workshop.date}</td>
+                                            <td>{item.status}</td>
+                                        </tr>
+                                    )
+                                })}
 
                             </tbody>
                         </table>
-
+                        <div className="join justify-center">
+                            {data.links.map((data, idx) => {
+                                return (
+                                    <Link key={idx} href={data.url} className={`join-item btn ${data.active ? 'btn-primary' : null}`} dangerouslySetInnerHTML={{ __html: data.label }} />
+                                )
+                            })}
+                        </div>
                     </div>
-                </div> */}
+                </div>
             </div>
-        </AdminLayout>
+        </GuestLayout>
     )
 }
