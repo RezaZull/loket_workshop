@@ -53,6 +53,8 @@ Route::group(['middleware'=>'Admin','prefix'=>'admin','name'=>'admin.'],function
     Route::resource('/user', UserSettingController::class);
     Route::resource('/workshop', WorkshopController::class);
     Route::resource('/userattend', UserAttendController::class);
+    route::put('/userattend/setva/{userAttend}',[UserAttendController::class,'setVa']);
+    route::put('/userattend/setstatus/{userAttend}',[UserAttendController::class,'setStatus']);
     Route::get('/dashboard', [CustomAdmin::class, 'ShowDashboard']);
     Route::get('/profile',[CustomAdmin::class,'ShowProfile']);
     Route::get('/profile/{user}/edit',[CustomAdmin::class,'EditProfile']);

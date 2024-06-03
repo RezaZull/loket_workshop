@@ -30,12 +30,12 @@ class CustomUser extends Controller
     public function ProcessWorkshop(Request $request){
         $request->validate([
             'user_id'=>'exists:users,id',
-            'workshop_id'=>'exists:workshops,id|unique:workshop',
-            'status'=>'menunggu VA',
+            'workshop_id'=>'exists:workshops,id',
         ]);
         UserAttend::create([
             'user_id'=>$request->user_id,
-            'workshop_id'=>$request->workshop_id
+            'workshop_id'=>$request->workshop_id,
+            'status'=>'Menunggu VA',
         ]);
         return redirect()->back();
     }

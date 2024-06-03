@@ -53,7 +53,7 @@ class UserAttendController extends Controller
      */
     public function update(Request $request, UserAttend $userAttend)
     {
-        //
+
     }
 
     /**
@@ -62,5 +62,25 @@ class UserAttendController extends Controller
     public function destroy(UserAttend $userAttend)
     {
         //
+    }
+
+    public function setVa( Request $request,UserAttend $userAttend){
+        $request->validate([
+            'virtual_account'=>'required'
+        ]);
+        $userAttend->update([
+            'virtual_account'=>$request->virtual_account,
+            'status'=>'Menunggu Pembayaran'
+        ]);
+        return redirect()->back();
+    }
+    public function setStatus(Request $request,UserAttend $userAttend){
+        $request->validate([
+            'status'=>'required'
+        ]);
+        $userAttend->update([
+            'status'=>$request->status
+        ]);
+        return redirect()->back();
     }
 }
