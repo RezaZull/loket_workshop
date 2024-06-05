@@ -1,6 +1,7 @@
+import Search from "@/Components/Search";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router } from "@inertiajs/react";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Detail(props) {
     console.log(props)
@@ -53,6 +54,7 @@ export default function Detail(props) {
                 </div>
 
                 <div className="card flex flex-col shadow-xl p-5">
+                    <Search url={`/admin/workshop/${data.id}`}/>
                     <div className="overflow-x-auto w-full  flex flex-col justify-between">
                         <h2>Data Mahasiswa</h2>
                         <table className="table w-full">
@@ -92,7 +94,7 @@ export default function Detail(props) {
                                                     </td> : null
                                                 }
                                                 {
-                                                     data.img_path != null && data.status == 'Menunggu Konfirmasi' ?
+                                                    data.img_path != null && data.status == 'Menunggu Konfirmasi' ?
                                                         <td>
                                                             <button className="btn btn-info" onClick={() => { document.getElementById('Konfirm_VA').showModal(), setselectedUserAttend(data) }}>Konfirmasi Blanko</button>
                                                             {/* <Link href={`/admin/workshop/`} className="btn btn-accent" >Konfirmasi Blanko</Link> */}
@@ -144,12 +146,14 @@ export default function Detail(props) {
                         {/* if there is a button in form, it will close the modal */}
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
-                    <h3 className="font-bold text-lg">Konfirmasi Blanko</h3>
-                    <img className="h-96" src={`/storage/${selectedUserAttend.img_path}`} alt="blanko_img" />
-                    <p className="py-4">Virtual Account : {selectedUserAttend.virtual_account}</p>
-                    <div className="flex justify-center gap-4">
-                        <button onClick={() => onSubmitBlanko('Tertolak')} className="btn text-white btn-error">Tolak</button>
-                        <button onClick={() => onSubmitBlanko('Terdaftar')} className="btn text-white btn-success">Terima</button>
+                    <div className="flex flex-col">
+                        <h3 className="font-bold text-lg">Konfirmasi Blanko</h3>
+                        <img className="h-96 self-center" src={`/storage/${selectedUserAttend.img_path}`} alt="blanko_img" />
+                        <p className="py-4">Virtual Account : {selectedUserAttend.virtual_account}</p>
+                        <div className="flex justify-center gap-4">
+                            <button onClick={() => onSubmitBlanko('Tertolak')} className="btn text-white btn-error">Tolak</button>
+                            <button onClick={() => onSubmitBlanko('Terdaftar')} className="btn text-white btn-success">Terima</button>
+                        </div>
                     </div>
                 </div>
             </dialog>

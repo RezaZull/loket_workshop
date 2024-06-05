@@ -1,8 +1,9 @@
+import Search from "@/Components/Search";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, router } from "@inertiajs/react";
+import { useState } from "react";
 
 export default function Index(props) {
-    console.log(props)
     let { data } = props
     let onDaftarClickHandle = (workshop_id) => {
         let dataSend = {
@@ -15,6 +16,7 @@ export default function Index(props) {
         <GuestLayout auth={props.auth} >
             <Head title={props.title} />
             <div className="flex flex-col gap-8 ">
+                <Search url={'/workshop'} />
                 <div className="flex flex-wrap gap-8 justify-between w-11/12 m-auto ">
                     {data.data.map((item, idx) => {
                         return (

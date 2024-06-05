@@ -19,34 +19,53 @@ class CustomUser extends Controller
         return Inertia::render('Users/Dashboard');
     }
     //workshop
-    public function ShowWorkshop(){
-        $data = Workshop::paginate(10);
+    public function ShowWorkshop(Request $request){
+        $data = Workshop::orderBy('date','desc');
+        if(!empty($request->query('search'))){
+            $data->where('name','like','%'.$request->query('search').'%');
+        }
         return Inertia::render('Users/Workshop/Index',[
             'title'=>'list workshop',
-            'data'=>$data
+            'data'=>$data->paginate(9)
         ]);
     }
 
     public function ProcessWorkshop(Request $request){
         $request->validate([
             'user_id'=>'exists:users,id',
-            'workshop_id'=>'exists:workshops,id',
+            'workshop_id'=>['exists:workshops,id','unique:user_attends,workshop_id,NULL,id,user_id,'.$request->user_id],
         ]);
         UserAttend::create([
             'user_id'=>$request->user_id,
             'workshop_id'=>$request->workshop_id,
             'status'=>'Menunggu VA',
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('message','message nya');
     }
 
     //attended
-    public function ShowAttended(){
-        $data = UserAttend::with('Workshop')->where('user_id','=',Auth::id())->paginate(5);
+    public function ShowAttended(Request $request){
+        $data = UserAttend::with(['Workshop'])->where('user_id','=',Auth::id())->orderBy('created_at','desc');
+        if(!empty($request->query('search'))){
+            $data->whereRelation('workshop','name','like','%'.$request->query('search').'%');
+        }
         return Inertia::render('Users/Attend/Index',[
             'title'=>'List Workshop Diikuti',
-            'data'=>$data
+            'data'=>$data->paginate(10)
         ]);
+    }
+
+    public function uploadVA(UserAttend $userAttend,Request $request){
+        // ddd($userAttend,$request);
+        if($userAttend->img_path != null){
+            Storage::delete($userAttend->img_path);
+        }
+        $img_path = $request->file('img_path')->store('virtual_account','public');
+        $userAttend->update([
+           'img_path'=>$img_path,
+           'status'=> 'Menunggu Konfirmasi'
+        ]);
+        return redirect()->back();
     }
 
     //profile

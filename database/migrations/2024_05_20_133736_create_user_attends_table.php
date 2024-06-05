@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('virtual_account')->nullable();
             $table->enum('status',['Menunggu VA','Menunggu Pembayaran','Menunggu Konfirmasi','Terdaftar','Tertolak']);
             $table->string('img_path')->nullable();
+            $table->string('message')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

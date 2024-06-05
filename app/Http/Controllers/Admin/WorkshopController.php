@@ -15,9 +15,13 @@ class WorkshopController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Workshop::paginate(10);
+        if (!empty($request->query('search'))) {
+            $data = Workshop::where('name', 'like', '%' . $request->query('search') . '%')->paginate(10);
+        } else {
+            $data = Workshop::paginate(10);
+        }
         return Inertia::render('Admin/Workshop/Index', [
             'data' => $data,
             'title' => 'admin workshop'
@@ -63,13 +67,16 @@ class WorkshopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Workshop $workshop)
+    public function show(Workshop $workshop,Request $request)
     {
-        $dataAttend = UserAttend::with('User')->where('workshop_id','=',$workshop->id)->paginate(5);
+        $dataAttend = UserAttend::with('User')->where('workshop_id', '=', $workshop->id);
+        if(!empty($request->query('search'))){
+            $dataAttend->whereRelation('User','name','like','%'.$request->query('search').'%');
+        }
         return Inertia::render('Admin/Workshop/Detail', [
             'title' => $workshop->name,
             'data' => $workshop,
-            'usersAttend'=>$dataAttend
+            'usersAttend' => $dataAttend->paginate(10)
         ]);
     }
 
@@ -79,7 +86,7 @@ class WorkshopController extends Controller
     public function edit(Workshop $workshop)
     {
         return Inertia::render('Admin/Workshop/Update', [
-            'title' => 'Edit '. $workshop->name,
+            'title' => 'Edit ' . $workshop->name,
             'data' => $workshop
         ]);
     }
@@ -92,7 +99,7 @@ class WorkshopController extends Controller
         if ($request->file('imagesPick') != null) {
             Storage::delete($workshop->img_path);
             $image_path = $request->file('imagesPick')->store('workshop', 'public');
-        }else{
+        } else {
             $image_path = $workshop->img_path;
         }
         $request->validate([
@@ -116,7 +123,7 @@ class WorkshopController extends Controller
      */
     public function destroy(Workshop $workshop)
     {
-        if($workshop->img_path != 'workshop/default.png'){
+        if ($workshop->img_path != 'workshop/default.png') {
             Storage::delete($workshop->img_path);
         }
         Workshop::destroy($workshop->id);

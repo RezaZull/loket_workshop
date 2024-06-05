@@ -15,9 +15,13 @@ class UserSettingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = User::paginate(10);
+        if(!empty($request->query('search'))){
+            $data=User::where('name','like','%'.$request->query('search').'%')->paginate(10);
+        }else{
+            $data = User::paginate(10);
+        }
         return Inertia::render('Admin/UserSetting/Index', [
             'title' => 'Daftar User',
             'data' => $data

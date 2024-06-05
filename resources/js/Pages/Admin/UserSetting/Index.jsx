@@ -1,3 +1,4 @@
+import Search from "@/Components/Search";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link, router } from "@inertiajs/react";
 
@@ -7,7 +8,8 @@ export default function Index(props) {
         <AdminLayout auth={auth} >
             <Head title={title} />
             <div className="card flex flex-col shadow-xl p-5">
-                <div className="flex flex-row justify-end">
+                <div className="flex flex-row justify-end gap-4">
+                    <Search url={'/admin/user'} />
                     <a href="/admin/user/create" className="btn btn-primary" >Tambah User</a>
                 </div>
                 <div className="overflow-x-auto w-full min-h-72 flex flex-col justify-between">

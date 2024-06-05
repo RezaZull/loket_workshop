@@ -69,6 +69,7 @@ Route::group(['middleware'=>'User','name'=>'user.'],function () {
     Route::post('/workshop',[CustomUser::class,'ProcessWorkshop']);
 
     Route::get('/attended',[CustomUser::class,'ShowAttended']);
+    Route::put('/attended/uploadva/{userAttend}',[CustomUser::class,'uploadVA']);
 
     Route::get('/profile',[CustomUser::class,'ShowProfile']);
     Route::get('/profile/{user}/edit',[CustomUser::class,'EditProfile']);
