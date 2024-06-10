@@ -67,7 +67,7 @@ class UserSettingController extends Controller
             'is_admin' => $request->is_admin,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('session',['title'=>'info','message'=>'Data user berhasil ditambah']);
     }
 
     /**
@@ -120,7 +120,7 @@ class UserSettingController extends Controller
             'is_admin' => $request->is_admin,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('session',['title'=>'info','message'=>'Data user berhasil diubah']);
     }
 
     /**
@@ -132,6 +132,6 @@ class UserSettingController extends Controller
             Storage::delete($user->img_path);
         }
         $user->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('session',['title'=>'info','message'=>'Data user berhasil dihapus']);
     }
 }

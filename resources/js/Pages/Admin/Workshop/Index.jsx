@@ -1,14 +1,17 @@
+import Alert from "@/Components/Alert";
 import Search from "@/Components/Search";
 import AdminLayout from "@/Layouts/AdminLayout"
 import { Link } from "@inertiajs/inertia-react"
-import { Head, router } from "@inertiajs/react";
+import { Head, router, usePage } from "@inertiajs/react";
 import React from "react"
 export default function Index(props) {
     let { data } = props;
+    const {flash} = usePage().props
 
     return (
         <AdminLayout auth={props.auth} >
             <Head title={props.title} />
+            {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <div className="card flex flex-col shadow-xl p-5">
                 <div className="flex flex-row justify-end gap-4">
                     <Search url={'/admin/workshop'}/>

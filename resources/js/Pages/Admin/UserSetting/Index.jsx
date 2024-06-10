@@ -1,12 +1,15 @@
+import Alert from "@/Components/Alert";
 import Search from "@/Components/Search";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 
 export default function Index(props) {
     let { title, auth, data } = props
+    const {flash}=usePage().props
     return (
         <AdminLayout auth={auth} >
             <Head title={title} />
+            {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <div className="card flex flex-col shadow-xl p-5">
                 <div className="flex flex-row justify-end gap-4">
                     <Search url={'/admin/user'} />

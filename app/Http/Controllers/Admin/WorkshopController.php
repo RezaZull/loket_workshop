@@ -18,12 +18,12 @@ class WorkshopController extends Controller
     public function index(Request $request)
     {
         if (!empty($request->query('search'))) {
-            $data = Workshop::where('name', 'like', '%' . $request->query('search') . '%')->paginate(10);
+            $data = Workshop::where('name', 'like', '%' . $request->query('search') . '%')->orderBy('date','desc');
         } else {
-            $data = Workshop::paginate(10);
+            $data = Workshop::orderBy('date','desc');
         }
         return Inertia::render('Admin/Workshop/Index', [
-            'data' => $data,
+            'data' => $data->paginate(10),
             'title' => 'admin workshop'
         ]);
     }
@@ -61,7 +61,7 @@ class WorkshopController extends Controller
             'study_program' => $request->study_program,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('workshop.index');
+        return redirect()->route('workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil ditambah']);
     }
 
     /**
@@ -115,7 +115,7 @@ class WorkshopController extends Controller
             'study_program' => $request->study_program,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('workshop.index');
+        return redirect()->route('workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil diubah']);
     }
 
     /**
@@ -127,6 +127,6 @@ class WorkshopController extends Controller
             Storage::delete($workshop->img_path);
         }
         Workshop::destroy($workshop->id);
-        return redirect()->route('workshop.index');
+        return redirect()->route('workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil dihapus']);
     }
 }

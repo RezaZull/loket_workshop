@@ -49,7 +49,7 @@ class CustomAdmin extends Controller
             'is_admin' => $request->is_admin,
             'img_path' => $image_path,
         ]);
-        return redirect()->action([CustomAdmin::class,'ShowProfile']);
+        return redirect()->route('/admin/profile')->with('session',['title'=>'info','message'=>'Profile berhasil diubah']);
     }
     public function ChangePassword(User $user){
         return Inertia::render('Admin/Profile/ChangePassword',[
@@ -65,6 +65,6 @@ class CustomAdmin extends Controller
         $user->update([
             'password'=>Hash::make($request->newPassword)
         ]);
-        return redirect()->action([CustomAdmin::class,'ShowProfile']);
+        return redirect()->route('/admin/profile')->with('session',['title'=>'info','message'=>'Password berhasil diubah']);
     }
 }

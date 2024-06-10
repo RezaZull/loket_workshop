@@ -40,7 +40,7 @@ class LoginController extends Controller
                 return redirect('/dashboard');
             }
         }else{
-            return redirect('login');
+            return redirect('login')->with('session',['message'=>'Username atau Password Salah','title'=>'info']);
         }
 
     }
@@ -70,7 +70,7 @@ class LoginController extends Controller
                 'password'=>Hash::make($request->input('password')),
                 'is_admin'=>0
             ]);
-        return redirect()->route('login');
+        return redirect()->route('login')->with('session',['title'=>'info','message'=>'Berhasil Registrasi Silahkan Login']);
     }
 
     public function logout(){

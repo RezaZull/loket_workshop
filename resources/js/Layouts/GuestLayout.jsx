@@ -41,7 +41,7 @@ export default function GuestLayout({ children,auth }) {
             </div>
             {/* main */}
             <div className="flex-1">
-                <main className="p-6" >
+                <main className="p-6 flex flex-col gap-4" >
 
 
                     {children}

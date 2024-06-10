@@ -72,7 +72,7 @@ class UserAttendController extends Controller
             'virtual_account'=>$request->virtual_account,
             'status'=>'Menunggu Pembayaran'
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('session',['title'=>'info','message'=>'Virtual account berhasil ditambahkan']);
     }
     public function setStatus(Request $request,UserAttend $userAttend){
         $request->validate([
@@ -81,6 +81,6 @@ class UserAttendController extends Controller
         $userAttend->update([
             'status'=>$request->status
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('session',['title'=>'info','message'=>'Status berhasil diubah']);
     }
 }

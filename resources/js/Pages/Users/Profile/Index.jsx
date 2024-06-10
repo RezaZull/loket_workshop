@@ -1,11 +1,14 @@
+import Alert from "@/Components/Alert"
 import GuestLayout from "@/Layouts/GuestLayout"
-import { Head, Link } from "@inertiajs/react"
+import { Head, Link, usePage } from "@inertiajs/react"
 
 export default function Index(props) {
     let { auth, data } = props
+    const { flash } = usePage().props
     console.log(props)
     return (
         <GuestLayout auth={auth}>
+            {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <Head title={props.title} />
             <div className="flex flex-col gap-8">
                 <div className="flex w-full">

@@ -40,7 +40,7 @@ class CustomUser extends Controller
             'workshop_id'=>$request->workshop_id,
             'status'=>'Menunggu VA',
         ]);
-        return redirect()->back()->with('message','message nya');
+        return redirect()->back()->with('session',['title'=>'info','message'=>'Berhasil Daftar Workshop']);
     }
 
     //attended
@@ -65,7 +65,7 @@ class CustomUser extends Controller
            'img_path'=>$img_path,
            'status'=> 'Menunggu Konfirmasi'
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('session',['title'=>'info','message'=>'Berhasil Upload Virtual Account']);
     }
 
     //profile
@@ -109,7 +109,7 @@ class CustomUser extends Controller
             'is_admin' => $request->is_admin,
             'img_path' => $image_path,
         ]);
-        return redirect()->action([CustomUser::class, 'ShowProfile']);
+        return redirect()->route('/profile')->with('session',['title'=>'info','message'=>'Profile berhasil diubah']);
     }
     public function ChangePassword(User $user)
     {
@@ -127,6 +127,6 @@ class CustomUser extends Controller
         $user->update([
             'password' => Hash::make($request->newPassword)
         ]);
-        return redirect()->action([CustomUser::class, 'ShowProfile']);
+        return redirect()->route('/profile')->with('session',['title'=>'info','message'=>'Password berhasil diubah']);
     }
 }

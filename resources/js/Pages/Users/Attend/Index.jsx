@@ -1,25 +1,27 @@
+import Alert from "@/Components/Alert"
 import Search from "@/Components/Search"
 import GuestLayout from "@/Layouts/GuestLayout"
-import { Head, Link, router } from "@inertiajs/react"
+import { Head, Link, router, usePage } from "@inertiajs/react"
 import { useState } from "react"
 
 export default function Index(props) {
     let { auth, data } = props
+    const { flash } = usePage().props
     const [selectedImage, setSelectedImage] = useState({})
-    const [selectAttend,setSelectedAttend]=useState({})
+    const [selectAttend, setSelectedAttend] = useState({})
 
-    let onConfirmHandle =()=>{
+    let onConfirmHandle = () => {
         let dataSend = {
-            _method:'put',
-            img_path : selectedImage,
-            Currentstatus:selectAttend.status
+            _method: 'put',
+            img_path: selectedImage,
+            Currentstatus: selectAttend.status
         }
         console.log(dataSend)
-        router.post(`/attended/uploadva/${selectAttend.id}`,dataSend, { forceFormData: true })
+        router.post(`/attended/uploadva/${selectAttend.id}`, dataSend, { forceFormData: true })
         resetState()
     }
 
-    let resetState=()=>{
+    let resetState = () => {
         setSelectedImage({})
         setSelectedAttend({})
         document.getElementById('Form_UploadVA').close()
@@ -27,9 +29,10 @@ export default function Index(props) {
 
     return (
         <GuestLayout auth={auth}>
+            {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <Head title={props.title} />
             <div className="card flex flex-col shadow-xl p-5">
-                <Search url={'/attended'}/>
+                <Search url={'/attended'} />
                 <div className="overflow-x-auto w-full gap-4 flex flex-col justify-between">
                     <h2>Data Workshop</h2>
                     <table className="table w-full">
@@ -90,7 +93,7 @@ export default function Index(props) {
                         <div className="label">
                             <span className="label-text">Masukan Bukti Pembayaran</span>
                         </div>
-                        <input accept="image/*" onChange={(e)=>setSelectedImage(e.target.files[0])} type="file" className="file-input file-input-bordered w-full" />
+                        <input accept="image/*" onChange={(e) => setSelectedImage(e.target.files[0])} type="file" className="file-input file-input-bordered w-full" />
                     </label>
                     <div className="flex justify-end mt-4 gap-4">
                         <button onClick={onConfirmHandle} className="btn" >Submit</button>

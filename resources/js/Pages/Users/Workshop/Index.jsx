@@ -1,19 +1,24 @@
+import Alert from "@/Components/Alert";
 import Search from "@/Components/Search";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function Index(props) {
-    let { data } = props
+    let { data,errors } = props
+    const { flash } = usePage().props
+    // console.log(props)
     let onDaftarClickHandle = (workshop_id) => {
         let dataSend = {
             user_id: props.auth.user.id,
             workshop_id: workshop_id,
         }
-        router.post('/workshop',dataSend)
+        router.post('/workshop', dataSend)
     }
     return (
         <GuestLayout auth={props.auth} >
+            {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
+            {errors.workshop_id && <Alert title={"Gagal"} message={errors.workshop_id} />}
             <Head title={props.title} />
             <div className="flex flex-col gap-8 ">
                 <Search url={'/workshop'} />
