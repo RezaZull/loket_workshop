@@ -49,33 +49,33 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 
 
-Route::group(['middleware'=>'Admin','prefix'=>'admin','name'=>'admin.'],function () {
+Route::group(['middleware'=>'Admin','prefix'=>'admin','as'=>'admin.'],function () {
     Route::resource('/user', UserSettingController::class);
     Route::resource('/workshop', WorkshopController::class);
     Route::resource('/userattend', UserAttendController::class);
     route::put('/userattend/setva/{userAttend}',[UserAttendController::class,'setVa']);
     route::put('/userattend/setstatus/{userAttend}',[UserAttendController::class,'setStatus']);
     Route::get('/dashboard', [CustomAdmin::class, 'ShowDashboard']);
-    Route::get('/profile',[CustomAdmin::class,'ShowProfile']);
-    Route::get('/profile/{user}/edit',[CustomAdmin::class,'EditProfile']);
-    Route::put('/profile/edit/{user}',[CustomAdmin::class,'ProcessEditProfile']);
-    Route::get('/profile/{user}/changepassword',[CustomAdmin::class,'ChangePassword']);
-    Route::put('/profile/changepassword/{user}',[CustomAdmin::class,'ProcessChangePassword']);
+    Route::get('/profile',[CustomAdmin::class,'ShowProfile'])->name('profile');
+    Route::get('/profile/{user}/edit',[CustomAdmin::class,'EditProfile'])->name('profile.edit');
+    Route::put('/profile/edit/{user}',[CustomAdmin::class,'ProcessEditProfile'])->name('profile.update');
+    Route::get('/profile/{user}/changepassword',[CustomAdmin::class,'ChangePassword'])->name('profile.changePass');
+    Route::put('/profile/changepassword/{user}',[CustomAdmin::class,'ProcessChangePassword'])->name('profile.updatePass');
 });
-Route::group(['middleware'=>'User','name'=>'user.'],function () {
+Route::group(['middleware'=>'User','as'=>'user.'],function () {
     Route::get('/dashboard', [CustomUser::class, 'ShowDashboard'])->name('dashboard');
 
-    Route::get('/workshop',[CustomUser::class,'ShowWorkshop']);
-    Route::post('/workshop',[CustomUser::class,'ProcessWorkshop']);
+    Route::get('/workshop',[CustomUser::class,'ShowWorkshop'])->name('showWorkshop');
+    Route::post('/workshop',[CustomUser::class,'ProcessWorkshop'])->name('processWorkshop');
 
-    Route::get('/attended',[CustomUser::class,'ShowAttended']);
-    Route::put('/attended/uploadva/{userAttend}',[CustomUser::class,'uploadVA']);
+    Route::get('/attended',[CustomUser::class,'ShowAttended'])->name('showAttend');
+    Route::put('/attended/uploadva/{userAttend}',[CustomUser::class,'uploadVA'])->name('uploadVA');
 
-    Route::get('/profile',[CustomUser::class,'ShowProfile']);
-    Route::get('/profile/{user}/edit',[CustomUser::class,'EditProfile']);
-    Route::put('/profile/edit/{user}',[CustomUser::class,'ProcessEditProfile']);
-    Route::get('/profile/{user}/changepassword',[CustomUser::class,'ChangePassword']);
-    Route::put('/profile/changepassword/{user}',[CustomUser::class,'ProcessChangePassword']);
+    Route::get('/profile',[CustomUser::class,'ShowProfile'])->name('profile');
+    Route::get('/profile/{user}/edit',[CustomUser::class,'EditProfile'])->name('profile.edit');
+    Route::put('/profile/edit/{user}',[CustomUser::class,'ProcessEditProfile'])->name('profile.update');
+    Route::get('/profile/{user}/changepassword',[CustomUser::class,'ChangePassword'])->name('profile.changePass');
+    Route::put('/profile/changepassword/{user}',[CustomUser::class,'ProcessChangePassword'])->name('profile.updatePass');
 });
 
 require __DIR__ . '/auth.php';

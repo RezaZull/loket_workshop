@@ -109,7 +109,7 @@ class CustomUser extends Controller
             'is_admin' => $request->is_admin,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('/profile')->with('session',['title'=>'info','message'=>'Profile berhasil diubah']);
+        return redirect()->route('user.profile')->with('session',['title'=>'info','message'=>'Profile berhasil diubah']);
     }
     public function ChangePassword(User $user)
     {
@@ -127,6 +127,6 @@ class CustomUser extends Controller
         $user->update([
             'password' => Hash::make($request->newPassword)
         ]);
-        return redirect()->route('/profile')->with('session',['title'=>'info','message'=>'Password berhasil diubah']);
+        return redirect()->route('user.profile')->with('session',['title'=>'info','message'=>'Password berhasil diubah']);
     }
 }

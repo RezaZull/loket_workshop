@@ -16,11 +16,11 @@ export default function Index(props) {
         router.post('/workshop', dataSend)
     }
     return (
-        <GuestLayout auth={props.auth} >
+        <GuestLayout auth={props.auth} currentRoute="workshop" >
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             {errors.workshop_id && <Alert title={"Gagal"} message={errors.workshop_id} />}
             <Head title={props.title} />
-            <div className="flex flex-col gap-8 ">
+            <div className="flex flex-col gap-8 m-6">
                 <Search url={'/workshop'} />
                 <div className="flex flex-wrap gap-8 justify-between w-11/12 m-auto ">
                     {data.data.map((item, idx) => {

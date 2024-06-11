@@ -41,9 +41,9 @@ export default function Register() {
                     {/* Sign in section */}
                     <div className=" w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
                         <form onSubmit={submit}>
-                            <div className='my-4' >
+                            <div className='my-10' >
                                 <Link href="/" className='flex justify-center' >
-                                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                                    <img src="/images/LPUG_FIX.png" className="h-14 fill-current text-gray-500" alt="logo" />
                                 </Link>
                             </div>
                             <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">

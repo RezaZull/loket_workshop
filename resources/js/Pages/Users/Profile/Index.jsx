@@ -7,10 +7,10 @@ export default function Index(props) {
     const { flash } = usePage().props
     console.log(props)
     return (
-        <GuestLayout auth={auth}>
+        <GuestLayout auth={auth} currentRoute="profile">
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <Head title={props.title} />
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8 m-6">
                 <div className="flex w-full">
                     <div className="flex flex-col items-center gap-4 w-2/5">
                         <div className="avatar">

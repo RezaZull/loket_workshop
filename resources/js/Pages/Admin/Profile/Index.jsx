@@ -6,10 +6,10 @@ export default function Index(props) {
     let { auth } = props
     const {flash}=usePage().props
     return (
-        <AdminLayout auth={auth}>
+        <AdminLayout auth={auth} currentRoute="profile">
             <Head title={props.title} />
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col m-6 gap-8">
                 <div className="flex w-full">
                     <div className="flex flex-col items-center gap-4 w-2/5">
                         <div className="avatar">

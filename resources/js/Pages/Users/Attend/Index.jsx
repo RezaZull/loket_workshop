@@ -28,10 +28,10 @@ export default function Index(props) {
     }
 
     return (
-        <GuestLayout auth={auth}>
+        <GuestLayout auth={auth} currentRoute="attend">
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <Head title={props.title} />
-            <div className="card flex flex-col shadow-xl p-5">
+            <div className="card flex flex-col shadow-xl p-5 m-6">
                 <Search url={'/attended'} />
                 <div className="overflow-x-auto w-full gap-4 flex flex-col justify-between">
                     <h2>Data Workshop</h2>

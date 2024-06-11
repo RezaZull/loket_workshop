@@ -7,10 +7,10 @@ export default function Index(props) {
     let { title, auth, data } = props
     const {flash}=usePage().props
     return (
-        <AdminLayout auth={auth} >
+        <AdminLayout auth={auth} currentRoute="user">
             <Head title={title} />
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
-            <div className="card flex flex-col shadow-xl p-5">
+            <div className="card flex flex-col shadow-xl p-5 m-6">
                 <div className="flex flex-row justify-end gap-4">
                     <Search url={'/admin/user'} />
                     <a href="/admin/user/create" className="btn btn-primary" >Tambah User</a>

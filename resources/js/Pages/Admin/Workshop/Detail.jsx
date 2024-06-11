@@ -1,11 +1,12 @@
+import Alert from "@/Components/Alert";
 import Search from "@/Components/Search";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function Detail(props) {
-    console.log(props)
     let { data, usersAttend } = props;
+    const {flash}=usePage().props
     const [virtual_account, setVirtual_account] = useState('')
     const [selectedUserAttend, setselectedUserAttend] = useState({})
     let onSubmitVA = () => {
@@ -37,9 +38,10 @@ export default function Detail(props) {
     }
 
     return (
-        <AdminLayout auth={props.auth}>
+        <AdminLayout auth={props.auth} currentRoute="workshop">
+            {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <Head title={props.title} />
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-10 m-6">
                 <div className="card lg:card-side bg-base-100 shadow-xl">
                     <figure className="max-w-sm"><img src={`/storage/${data.img_path}`} alt="Album" /></figure>
                     <div className="card-body">

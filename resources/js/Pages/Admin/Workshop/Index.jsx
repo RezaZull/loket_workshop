@@ -9,10 +9,10 @@ export default function Index(props) {
     const {flash} = usePage().props
 
     return (
-        <AdminLayout auth={props.auth} >
+        <AdminLayout auth={props.auth} currentRoute="workshop">
             <Head title={props.title} />
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
-            <div className="card flex flex-col shadow-xl p-5">
+            <div className="card flex flex-col shadow-xl p-5 m-6">
                 <div className="flex flex-row justify-end gap-4">
                     <Search url={'/admin/workshop'}/>
                     <a href="/admin/workshop/create" className="btn btn-primary" >Tambah Workshop</a>

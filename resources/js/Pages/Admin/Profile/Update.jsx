@@ -27,11 +27,11 @@ export default function Insert(props) {
         router.post(`/admin/profile/edit/${props.data.id}`, data, { forceFormData: true })
     }
     return (
-        <AdminLayout auth={props.auth}>
+        <AdminLayout auth={props.auth} currentRoute="profile">
             <Head title={props.title} />
-            <div className="card bg-base-100 shadow-xl p-5">
+            <div className="card bg-base-100 shadow-xl m-6 p-5 ">
                 <h1 className="text-2xl text-center" >Formulir Mengubah Profile</h1>
-                <div>
+                <div className="flex flex-col gap-4">
                     <label className="form-control w-full ">
                         <div className="label">
                             <span className="label-text">Nama User*</span>
