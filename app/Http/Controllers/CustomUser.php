@@ -16,7 +16,15 @@ class CustomUser extends Controller
 {
     public function ShowDashboard()
     {
-        return Inertia::render('Users/Dashboard');
+        return Inertia::render('Users/Dashboard',[
+            'dataAttend'=>[
+                'menungguVA'=>UserAttend::where('user_id','=',Auth::id())->where('status','=','Menunggu VA')->get()->count(),
+                'pembayaran'=>UserAttend::where('user_id','=',Auth::id())->where('status','=','Menunggu Pembayaran')->get()->count(),
+                'konfirmasi'=>UserAttend::where('user_id','=',Auth::id())->where('status','=','Menunggu Konfirmasi')->get()->count(),
+                'terdaftar'=>UserAttend::where('user_id','=',Auth::id())->where('status','=','Terdaftar')->get()->count(),
+                'tertolak'=>UserAttend::where('user_id','=',Auth::id())->where('status','=','Tertolak')->get()->count(),
+            ]
+        ]);
     }
     //workshop
     public function ShowWorkshop(Request $request){

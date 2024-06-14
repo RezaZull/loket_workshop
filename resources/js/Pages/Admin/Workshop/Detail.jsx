@@ -6,9 +6,10 @@ import { useState } from "react";
 
 export default function Detail(props) {
     let { data, usersAttend } = props;
-    const {flash}=usePage().props
+    const { flash } = usePage().props
     const [virtual_account, setVirtual_account] = useState('')
     const [selectedUserAttend, setselectedUserAttend] = useState({})
+    const [message, setMessage] = useState('')
     let onSubmitVA = () => {
         if (selectedUserAttend.length != 0) {
             let dataSend = {
@@ -25,7 +26,8 @@ export default function Detail(props) {
         if (selectedUserAttend.length != 0) {
             let datasend = {
                 _method: 'put',
-                status: status
+                status: status,
+                message: message
             }
             router.post(`/admin/userattend/setstatus/${selectedUserAttend.id}`, datasend)
             resetVA()
@@ -35,6 +37,7 @@ export default function Detail(props) {
     let resetVA = () => {
         setVirtual_account("")
         setselectedUserAttend({})
+        setMessage("")
     }
 
     return (
@@ -50,13 +53,13 @@ export default function Detail(props) {
                         <p>{data.detail}</p>
                         <p>{data.study_program}</p>
                         <div className="card-actions justify-end">
-                            <Link href={`/admin/workshop/${data.id}/edit`} className="btn btn-primary">Edit</Link>
+                            <Link href={`/admin/workshop/${data.id}/edit`} className="btn  bg-brand-500 border-none text-white">Edit</Link>
                         </div>
                     </div>
                 </div>
 
                 <div className="card flex flex-col shadow-xl p-5">
-                    <Search url={`/admin/workshop/${data.id}`}/>
+                    <Search url={`/admin/workshop/${data.id}`} />
                     <div className="overflow-x-auto w-full  flex flex-col justify-between">
                         <h2>Data Mahasiswa</h2>
                         <table className="table w-full">
@@ -86,7 +89,7 @@ export default function Detail(props) {
                                                 <td>{data.user.study_program}</td>
                                                 <td>{data.virtual_account ? data.virtual_account : '-'}</td>
                                                 <td>
-                                                    <span className={`badge text-white badge-primary badge-md ${data.status == 'Menunggu VA' ? 'btn-accent' : data.status == 'Menunggu Konfirmasi' ? 'btn-info' : data.status == 'Terdaftar' ? 'btn-success' : 'btn-error'}`}>
+                                                    <span className={`badge text-white badge-primary border-none badge-md ${data.status == 'Menunggu VA' ? 'bg-accent' : data.status == 'Menunggu Konfirmasi' ? 'bg-info' : data.status == 'Terdaftar' ? 'bg-success' : 'bg-error'}`}>
                                                         {data.status}
                                                     </span>
                                                 </td>
@@ -105,7 +108,7 @@ export default function Detail(props) {
                                                 {
                                                     data.status == 'Terdaftar' | data.status == 'Tertolak' ?
                                                         <td>
-                                                            <button className="btn btn-primary" onClick={() => { document.getElementById('view_VA').showModal(), setselectedUserAttend(data) }}>Lihat Blanko</button>
+                                                            <button className="btn btn-primary bg-brand-500 border-none text-white" onClick={() => { document.getElementById('view_VA').showModal(), setselectedUserAttend(data) }}>Lihat Blanko</button>
                                                             {/* <Link href={`/admin/workshop/`} className="btn btn-accent" >Konfirmasi Blanko</Link> */}
                                                         </td> : null
                                                 }
@@ -120,7 +123,7 @@ export default function Detail(props) {
                         <div className="join justify-center">
                             {usersAttend.links.map((data, idx) => {
                                 return (
-                                    <Link key={idx} href={data.url} className={`join-item btn ${data.active ? 'btn-primary' : null}`} dangerouslySetInnerHTML={{ __html: data.label }} />
+                                    <Link key={idx} href={data.url} className={`join-item btn ${data.active ? 'btn-primary bg-brand-500 border-none text-white' : null}`} dangerouslySetInnerHTML={{ __html: data.label }} />
                                 )
                             })}
                         </div>
@@ -136,9 +139,13 @@ export default function Detail(props) {
                         {/* if there is a button in form, it will close the modal */}
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
+                    <div className="flex flex-col gap-4">
                     <h3 className="font-bold text-lg">Add Virtual Account</h3>
-                    <input type="text" value={virtual_account} onChange={(e) => setVirtual_account(e.target.value)} />
-                    <button className="btn" onClick={() => onSubmitVA()} >Submit</button>
+                    <div className="join">
+                        <input className="join-item input input-bordered w-full" type="text" value={virtual_account} onChange={(e) => setVirtual_account(e.target.value)} />
+                        <button className="btn join-item bg-brand-500 border-none text-white" onClick={() => onSubmitVA()} >Submit</button>
+                    </div>
+                    </div>
                 </div>
             </dialog>
             {/* modal Konfirm VA */}
@@ -148,10 +155,13 @@ export default function Detail(props) {
                         {/* if there is a button in form, it will close the modal */}
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-4">
                         <h3 className="font-bold text-lg">Konfirmasi Blanko</h3>
                         <img className="h-96 self-center" src={`/storage/${selectedUserAttend.img_path}`} alt="blanko_img" />
-                        <p className="py-4">Virtual Account : {selectedUserAttend.virtual_account}</p>
+                        <p>Virtual Account : {selectedUserAttend.virtual_account}</p>
+                        <label className="form-control w-full ">
+                            <input type="text" placeholder="Catatan" value={message} onChange={(e) => setMessage(e.target.value)} className="input input-bordered w-full" />
+                        </label>
                         <div className="flex justify-center gap-4">
                             <button onClick={() => onSubmitBlanko('Tertolak')} className="btn text-white btn-error">Tolak</button>
                             <button onClick={() => onSubmitBlanko('Terdaftar')} className="btn text-white btn-success">Terima</button>

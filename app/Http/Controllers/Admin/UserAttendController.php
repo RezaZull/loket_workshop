@@ -79,7 +79,8 @@ class UserAttendController extends Controller
             'status'=>'required'
         ]);
         $userAttend->update([
-            'status'=>$request->status
+            'status'=>$request->status,
+            'message'=>$request->message
         ]);
         return redirect()->back()->with('session',['title'=>'info','message'=>'Status berhasil diubah']);
     }

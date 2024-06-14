@@ -43,6 +43,7 @@ export default function Index(props) {
                                 <th>Date</th>
                                 <th>Jurusan</th>
                                 <th>Status</th>
+                                <th>Pesan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -55,13 +56,14 @@ export default function Index(props) {
                                         <td>{item.workshop.date}</td>
                                         <td>{item.workshop.study_program}</td>
                                         <td>
-                                            <span className={`badge text-white badge-primary badge-md ${item.status == 'Menunggu VA' ? 'btn-accent' : item.status == 'Menunggu Konfirmasi' ? 'btn-info' : item.status == 'Terdaftar' ? 'btn-success' : 'btn-error'}`}>
+                                            <span className={`badge border-none text-white badge-primary badge-xl text-sm p-4 ${item.status == 'Menunggu VA' ? 'bg-accent' : item.status == 'Menunggu Konfirmasi' ? 'bg-info' : item.status == 'Terdaftar' ? 'bg-success' : 'bg-error'}`}>
                                                 {item.status}
                                             </span>
                                         </td>
+                                        <td>{item.message}</td>
                                         <td>
                                             {
-                                                item.status == 'Menunggu Pembayaran' ?
+                                                item.status == 'Menunggu Pembayaran'||item.status =='Tertolak' ?
                                                     <button onClick={() => { document.getElementById('Form_UploadVA').showModal(), setSelectedAttend(item) }} className="btn text-white btn-info" >Konfirmasi Pembayaran</button>
                                                     : null
                                             }
@@ -75,7 +77,7 @@ export default function Index(props) {
                     <div className="join justify-center">
                         {data.links.map((data, idx) => {
                             return (
-                                <Link key={idx} href={data.url} className={`join-item btn ${data.active ? 'btn-primary' : null}`} dangerouslySetInnerHTML={{ __html: data.label }} />
+                                <Link key={idx} href={data.url} className={`join-item btn ${data.active ? 'btn-primary bg-brand-500 border-none text-white' : null}`} dangerouslySetInnerHTML={{ __html: data.label }} />
                             )
                         })}
                     </div>

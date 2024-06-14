@@ -29,7 +29,7 @@ export default function Index(props) {
                         <h2 className="badge badge-primary badge-lg" >{auth.user.is_admin == 1 ? 'Admin' : 'User'}</h2>
                         <div className="join self-end ">
                             <Link href={`/admin/profile/${auth.user.id}/edit`} className="btn btn-info join-item">Edit</Link>
-                            <Link href={`/admin/profile/${auth.user.id}/changepassword`} className="btn btn-primary join-item">Ubah Password</Link>
+                            <Link href={`/admin/profile/${auth.user.id}/changepassword`} className="btn btn-primary bg-brand-500 border-none text-white join-item">Ubah Password</Link>
                         </div>
                     </div>
                 </div>

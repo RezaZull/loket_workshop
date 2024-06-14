@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserAttend;
+use App\Models\Workshop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -12,7 +15,22 @@ use Illuminate\Validation\Rules;
 class CustomAdmin extends Controller
 {
     public function ShowDashboard(){
-        return Inertia::render('Admin/Dashboard');
+        $dataWS = Workshop::all();
+        $dataAttend = new UserAttend;
+        return Inertia::render('Admin/Dashboard',[
+            'dataWorkshop'=>[
+                'totalWorkshop'=>$dataWS->count(),
+                'workshopBerjalan'=>$dataWS->where('date','<',Carbon::now()->toDateString())->count(),
+                'workshopAkanBerjalan'=>$dataWS->where('date','>=',Carbon::now()->toDateString())->count(),
+            ],
+            'dataAttend'=>[
+                'menungguVA'=>$dataAttend->where('status','=','Menunggu VA')->get()->count(),
+                'pembayaran'=>$dataAttend->where('status','=','Menunggu Pembayaran')->get()->count(),
+                'konfirmasi'=>$dataAttend->where('status','=','Menunggu Konfirmasi')->get()->count(),
+                'terdaftar'=>$dataAttend->where('status','=','Terdaftar')->get()->count(),
+                'tertolak'=>$dataAttend->where('status','=','Tertolak')->get()->count(),
+            ]
+        ]);
     }
     public function ShowProfile(){
         return Inertia::render('Admin/Profile/Index',[

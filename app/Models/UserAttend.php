@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class UserAttend extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['user_id', 'workshop_id', 'virtual_account', 'status', 'img_path'];
+    protected $fillable = ['user_id', 'workshop_id', 'virtual_account', 'status', 'img_path','message'];
     public function User():HasOne{
         return $this->hasOne(User::class,'id','user_id');
     }

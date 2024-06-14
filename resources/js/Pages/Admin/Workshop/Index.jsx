@@ -15,7 +15,7 @@ export default function Index(props) {
             <div className="card flex flex-col shadow-xl p-5 m-6">
                 <div className="flex flex-row justify-end gap-4">
                     <Search url={'/admin/workshop'}/>
-                    <a href="/admin/workshop/create" className="btn btn-primary" >Tambah Workshop</a>
+                    <a href="/admin/workshop/create" className="btn btn-primary bg-brand-500 border-none text-white" >Tambah Workshop</a>
                 </div>
                 <div className="overflow-x-auto w-full min-h-72 flex flex-col justify-between">
                     <h2>Data Workshop</h2>
@@ -58,7 +58,7 @@ export default function Index(props) {
                     <div className="join justify-center">
                         {data.links.map((data,idx)=>{
                             return(
-                                <Link key={idx} href={data.url} className={`join-item btn ${data.active?'btn-primary':null}`} dangerouslySetInnerHTML={{__html:data.label}}/>
+                                <Link key={idx} href={data.url} className={`join-item btn ${data.active?'btn-primary bg-brand-500 border-none text-white':null}`} dangerouslySetInnerHTML={{__html:data.label}}/>
                             )
                         })}
                     </div>

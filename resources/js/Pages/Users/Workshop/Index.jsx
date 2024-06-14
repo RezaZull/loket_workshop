@@ -2,12 +2,12 @@ import Alert from "@/Components/Alert";
 import Search from "@/Components/Search";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
-import { useState } from "react";
+import moment from "moment";
 
 export default function Index(props) {
-    let { data,errors } = props
+    let { data, errors } = props
     const { flash } = usePage().props
-    // console.log(props)
+    console.log(props)
     let onDaftarClickHandle = (workshop_id) => {
         let dataSend = {
             user_id: props.auth.user.id,
@@ -32,9 +32,12 @@ export default function Index(props) {
                                     <p>untuk mahasiswa jurusan {item.study_program}</p>
                                     <p>{item.detail}</p>
                                     <div className="badge badge-info">{item.date}</div>
-
                                     <div className="card-actions justify-end">
-                                        <button onClick={() => onDaftarClickHandle(item.id)} className="btn btn-primary">Daftar Workshop</button>
+                                        {moment(item.date).isAfter() ? (
+                                            <button onClick={() => onDaftarClickHandle(item.id)} className="btn btn-primary bg-brand-500 border-none text-white">Daftar Workshop</button>
+                                        ) : (
+                                            <button disabled className="btn btn-disabled text-white">Terlewat</button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +47,7 @@ export default function Index(props) {
                 <div className="join justify-center">
                     {data.links.map((data, idx) => {
                         return (
-                            <Link key={idx} href={data.url} className={`join-item btn ${data.active ? 'btn-primary' : null}`} dangerouslySetInnerHTML={{ __html: data.label }} />
+                            <Link key={idx} href={data.url} className={`join-item btn ${data.active ? 'btn-primary bg-brand-500 border-none text-white' : null}`} dangerouslySetInnerHTML={{ __html: data.label }} />
                         )
                     })}
                 </div>
