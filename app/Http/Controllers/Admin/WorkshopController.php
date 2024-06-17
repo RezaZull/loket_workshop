@@ -61,7 +61,7 @@ class WorkshopController extends Controller
             'study_program' => $request->study_program,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil ditambah']);
+        return redirect()->route('admin.workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil ditambah']);
     }
 
     /**
@@ -115,7 +115,7 @@ class WorkshopController extends Controller
             'study_program' => $request->study_program,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil diubah']);
+        return redirect()->route('admin.workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil diubah']);
     }
 
     /**
@@ -127,6 +127,6 @@ class WorkshopController extends Controller
             Storage::delete($workshop->img_path);
         }
         Workshop::destroy($workshop->id);
-        return redirect()->route('workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil dihapus']);
+        return redirect()->route('admin.workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil dihapus']);
     }
 }

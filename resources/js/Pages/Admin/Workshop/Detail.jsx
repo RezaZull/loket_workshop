@@ -108,7 +108,7 @@ export default function Detail(props) {
                                                 {
                                                     data.status == 'Terdaftar' | data.status == 'Tertolak' ?
                                                         <td>
-                                                            <button className="btn btn-primary bg-brand-500 border-none text-white" onClick={() => { document.getElementById('view_VA').showModal(), setselectedUserAttend(data) }}>Lihat Blanko</button>
+                                                            <button className="btn btn-primary bg-brand-500 border-none text-white" onClick={() => { document.getElementById('view_VA').showModal(), setselectedUserAttend(data) }}>Lihat Bukti Pembayaran</button>
                                                             {/* <Link href={`/admin/workshop/`} className="btn btn-accent" >Konfirmasi Blanko</Link> */}
                                                         </td> : null
                                                 }
@@ -140,11 +140,11 @@ export default function Detail(props) {
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <div className="flex flex-col gap-4">
-                    <h3 className="font-bold text-lg">Add Virtual Account</h3>
-                    <div className="join">
-                        <input className="join-item input input-bordered w-full" type="text" value={virtual_account} onChange={(e) => setVirtual_account(e.target.value)} />
-                        <button className="btn join-item bg-brand-500 border-none text-white" onClick={() => onSubmitVA()} >Submit</button>
-                    </div>
+                        <h3 className="font-bold text-lg">Add Virtual Account</h3>
+                        <div className="join">
+                            <input className="join-item input input-bordered w-full" type="text" value={virtual_account} onChange={(e) => setVirtual_account(e.target.value)} />
+                            <button className="btn join-item bg-brand-500 border-none text-white" onClick={() => onSubmitVA()} >Submit</button>
+                        </div>
                     </div>
                 </div>
             </dialog>
@@ -176,9 +176,11 @@ export default function Detail(props) {
                         {/* if there is a button in form, it will close the modal */}
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
-                    <h3 className="font-bold text-lg"> Blanko</h3>
-                    <img className="h-96" src={`/storage/${selectedUserAttend.img_path}`} alt="blanko_img" />
-                    <p className="py-4">Virtual Account : {selectedUserAttend.virtual_account}</p>
+                    <div className="flex flex-col gap-4">
+                        <h3 className="font-bold text-lg"> Blanko</h3>
+                        <img className="h-96 self-center" src={`/storage/${selectedUserAttend.img_path}`} alt="blanko_img" />
+                        <p className="py-4">Virtual Account : {selectedUserAttend.virtual_account}</p>
+                    </div>
                 </div>
             </dialog>
 

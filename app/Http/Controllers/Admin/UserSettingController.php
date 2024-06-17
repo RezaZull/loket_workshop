@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserAttend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -67,7 +68,7 @@ class UserSettingController extends Controller
             'is_admin' => $request->is_admin,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('user.index')->with('session',['title'=>'info','message'=>'Data user berhasil ditambah']);
+        return redirect()->route('admin.user.index')->with('session',['title'=>'info','message'=>'Data user berhasil ditambah']);
     }
 
     /**
@@ -75,9 +76,14 @@ class UserSettingController extends Controller
      */
     public function show(User $user)
     {
+
+        $dataWorkshop = UserAttend::with('Workshop')->where('user_id','=',$user->id)->paginate(5);
         return Inertia::render('Admin/UserSetting/Detail', [
             'title' => $user->name,
-            'data' => $user
+            'data' => [
+                'userData'=>$user,
+                'userWorkshop'=>$dataWorkshop
+                ]
         ]);
     }
 
@@ -120,7 +126,7 @@ class UserSettingController extends Controller
             'is_admin' => $request->is_admin,
             'img_path' => $image_path,
         ]);
-        return redirect()->route('user.index')->with('session',['title'=>'info','message'=>'Data user berhasil diubah']);
+        return redirect()->route('admin.user.index')->with('session',['title'=>'info','message'=>'Data user berhasil diubah']);
     }
 
     /**
@@ -132,6 +138,6 @@ class UserSettingController extends Controller
             Storage::delete($user->img_path);
         }
         $user->delete();
-        return redirect()->route('user.index')->with('session',['title'=>'info','message'=>'Data user berhasil dihapus']);
+        return redirect()->route('admin.user.index')->with('session',['title'=>'info','message'=>'Data user berhasil dihapus']);
     }
 }

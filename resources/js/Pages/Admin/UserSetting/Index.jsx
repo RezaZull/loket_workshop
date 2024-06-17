@@ -47,7 +47,7 @@ export default function Index(props) {
                                                 <div className="badge badge-lg badge-info">User</div>}
                                             </td>
                                             <td>
-                                                <Link href={`/admin/user/${data.id}/edit`} className="btn btn-accent" >Edit</Link>
+                                                <Link href={`/admin/user/${data.id}`} className="btn btn-accent" >Detail</Link>
                                             </td>
                                             <td>
                                                 <button onClick={() => router.delete(`/admin/user/${data.id}`)} className="btn btn-error ">Delete</button>
