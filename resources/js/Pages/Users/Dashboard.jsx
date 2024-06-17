@@ -3,7 +3,6 @@ import GuestLayout from '@/Layouts/GuestLayout'
 
 export default function Dashboard(props) {
     const { auth, dataAttend } = props
-    console.log(dataAttend)
     return (
         <GuestLayout auth={auth} currentRoute="dashboard" >
             <Head title="Dashboard" />

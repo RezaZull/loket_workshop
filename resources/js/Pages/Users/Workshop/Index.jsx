@@ -7,7 +7,6 @@ import moment from "moment";
 export default function Index(props) {
     let { data, errors } = props
     const { flash } = usePage().props
-    console.log(props)
     let onDaftarClickHandle = (workshop_id) => {
         let dataSend = {
             user_id: props.auth.user.id,

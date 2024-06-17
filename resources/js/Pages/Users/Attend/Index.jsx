@@ -16,7 +16,6 @@ export default function Index(props) {
             img_path: selectedImage,
             Currentstatus: selectAttend.status
         }
-        console.log(dataSend)
         router.post(`/attended/uploadva/${selectAttend.id}`, dataSend, { forceFormData: true })
         resetState()
     }

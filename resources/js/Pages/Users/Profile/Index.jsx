@@ -5,7 +5,6 @@ import { Head, Link, usePage } from "@inertiajs/react"
 export default function Index(props) {
     let { auth, data } = props
     const { flash } = usePage().props
-    console.log(props)
     return (
         <GuestLayout auth={auth} currentRoute="profile">
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}

@@ -5,7 +5,6 @@ import { Head, Link, usePage } from "@inertiajs/react"
 export default function Index(props) {
     let { auth, data } = props
     const { flash } = usePage().props
-    console.log(data)
     return (
         <AdminLayout auth={auth} currentRoute="user">
             <Head title={props.title} />

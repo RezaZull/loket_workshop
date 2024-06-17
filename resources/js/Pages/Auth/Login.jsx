@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import InputError from '@/Components/InputError';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
 import Alert from '@/Components/Alert';
 
 export default function Login({ status, canResetPassword }) {
     const { flash } = usePage().props
-    console.log(flash)
     const { data, setData, post, processing, errors, reset } = useForm({
         npm: '',
         password: ''

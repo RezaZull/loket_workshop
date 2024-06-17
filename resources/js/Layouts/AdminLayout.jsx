@@ -1,7 +1,6 @@
 
 export default function AdminLayout({ children, auth, currentRoute }) {
     let { user } = auth
-    console.log(user);
     return (
         <div className="flex min-h-screen">
 

@@ -3,7 +3,6 @@ import { Head } from '@inertiajs/react';
 
 export default function Dashboard(props) {
     const { auth, dataWorkshop, dataAttend } = props
-    console.log(props, 'te')
     return (
         <AdminLayout auth={auth} currentRoute="dashboard">
             <Head title="Dashboard" />
