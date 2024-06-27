@@ -15,7 +15,7 @@ export default function Index(props) {
             <div className="card flex flex-col shadow-xl p-5 m-6">
                 <div className="flex flex-row justify-end gap-4">
                     <Search url={'/admin/workshop'}/>
-                    <a href="/admin/workshop/create" className="btn btn-primary bg-brand-500 border-none text-white" >Tambah Workshop</a>
+                    <Link href="/admin/workshop/create" className="btn btn-primary bg-brand-500 border-none text-white" >Tambah Workshop</Link>
                 </div>
                 <div className="overflow-x-auto w-full min-h-72 flex flex-col justify-between">
                     <h2>Data Workshop</h2>

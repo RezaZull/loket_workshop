@@ -81,12 +81,12 @@ export default function Login({ status, canResetPassword }) {
                                 <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
                                     Belum registrasi?
                                 </span>
-                                <a
+                                <Link
                                     href="/register"
                                     className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
                                 >
                                     Buat akun
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

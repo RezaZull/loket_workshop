@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 
 export default function GuestLayout({ children, auth, currentRoute }) {
     return (
@@ -6,31 +7,31 @@ export default function GuestLayout({ children, auth, currentRoute }) {
             <div className="w-64 bg-gray-50 border-r border-gray-200">
 
                 <div className="py-4 px-6">
-                    <a href="/dashboard">
+                    <Link href="/dashboard">
                         <img src="/images/WSUG_logo.png" alt="logo" />
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="mb-10">
-                    <a href="/dashboard" className={`flex items-center px-6 py-2.5 ${currentRoute == 'dashboard' ? 'text-brand-500' : 'text-gray-500'}   hover:text-brand-500 group`}>
+                    <Link href="/dashboard" className={`flex items-center px-6 py-2.5 ${currentRoute == 'dashboard' ? 'text-brand-500' : 'text-gray-500'}   hover:text-brand-500 group`}>
                         Dashboard
-                    </a>
+                    </Link>
 
-                    <a href="/workshop" className={`flex items-center px-6 py-2.5 ${currentRoute == 'workshop' ? 'text-brand-500' : 'text-gray-500'}  hover:text-brand-500 group`}>
+                    <Link href="/workshop" className={`flex items-center px-6 py-2.5 ${currentRoute == 'workshop' ? 'text-brand-500' : 'text-gray-500'}  hover:text-brand-500 group`}>
                         Workshop
-                    </a>
+                    </Link>
 
-                    <a href="/attended" className={`flex items-center px-6 py-2.5 ${currentRoute == 'attend' ? 'text-brand-500' : 'text-gray-500'}  hover:text-brand-500 group`}>
+                    <Link href="/attended" className={`flex items-center px-6 py-2.5 ${currentRoute == 'attend' ? 'text-brand-500' : 'text-gray-500'}  hover:text-brand-500 group`}>
                         Workshop Diikuti
-                    </a>
+                    </Link>
 
-                    <a href="/profile" className={`flex items-center px-6 py-2.5 ${currentRoute == 'profile' ? 'text-brand-500' : 'text-gray-500'}  hover:text-brand-500 group`}>
+                    <Link href="/profile" className={`flex items-center px-6 py-2.5 ${currentRoute == 'profile' ? 'text-brand-500' : 'text-gray-500'}  hover:text-brand-500 group`}>
                         Profil
-                    </a>
+                    </Link>
 
-                    <a href="/logout" className={`flex items-center px-6 py-2.5  text-gray-500 hover:text-brand-500 group`}>
+                    <Link href="/logout" className={`flex items-center px-6 py-2.5  text-gray-500 hover:text-brand-500 group`}>
                         Logout
-                    </a>
+                    </Link>
 
                 </div>
 

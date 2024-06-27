@@ -165,12 +165,12 @@ export default function Register() {
                             <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
                                 Sudah punya akun?
                             </span>
-                            <a
+                            <Link
                                 href="/"
                                 className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
                             >
                                 Login
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
