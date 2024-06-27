@@ -50,12 +50,12 @@ class UserSettingController extends Controller
             $image_path = 'user/default.png';
         }
         $request->validate([
-            'name' => 'required',
-            'npm' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'name' => 'required|max:50',
+            'npm' => 'required|max:8',
+            'email' => 'required|max:50',
+            'phone' => 'required|max:13',
             'is_admin' => 'required',
-            'study_program' => 'required',
+            'study_program' => 'required|max:30',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         User::create([
@@ -110,12 +110,12 @@ class UserSettingController extends Controller
             $image_path = $user->img_path;
         }
         $request->validate([
-            'name' => 'required',
-            'npm' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'name' => 'required|max:50',
+            'npm' => 'required|max:8',
+            'email' => 'required|max:50',
+            'phone' => 'required|max:13',
             'is_admin' => 'required',
-            'study_program' => 'required',
+            'study_program' => 'required|max:30',
         ]);
         $user->update([
             'name' => $request->name,

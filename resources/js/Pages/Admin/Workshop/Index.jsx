@@ -27,6 +27,7 @@ export default function Index(props) {
                                 <th>Name</th>
                                 <th>Date</th>
                                 <th>Jurusan</th>
+                                <th>Harga</th>
                                 <th>Detail Workshop</th>
                                 <th colSpan={2}>Setting</th>
                             </tr>
@@ -40,6 +41,7 @@ export default function Index(props) {
                                             <td>{data.name}</td>
                                             <td>{data.date}</td>
                                             <td>{data.study_program}</td>
+                                            <td>Rp.{data.price}</td>
                                             <td>{data.detail}</td>
                                             <td>
                                                 <Link href={`/admin/workshop/${data.id}`} className="btn btn-accent" >Detail</Link>
@@ -52,6 +54,11 @@ export default function Index(props) {
                                     )
                                 })
                             }
+                            {data.data.length == 0 ?
+                                    <tr>
+                                        <td colSpan="7" className="text-center"> Tidak ada data </td>
+                                    </tr> : null
+                                }
 
                         </tbody>
                     </table>

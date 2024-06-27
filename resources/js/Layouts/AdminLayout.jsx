@@ -8,7 +8,7 @@ export default function AdminLayout({ children, auth, currentRoute }) {
 
                 <div className="py-4 px-6">
                     <a href="/admin/dashboard">
-                        <img src="/images/LPUG_FIX.png" alt="logo" />
+                        <img src="/images/WSUG_logo.png" alt="logo" />
                     </a>
                 </div>
 
@@ -22,11 +22,11 @@ export default function AdminLayout({ children, auth, currentRoute }) {
                     </a>
 
                     <a href="/admin/user" className={`flex items-center px-6 py-2.5 ${currentRoute == 'user' ? 'text-brand-500' : 'text-gray-500'} hover:text-brand-500 group`}>
-                        User Setting
+                        Pengaturan User
                     </a>
 
                     <a href={`/admin/profile`} className={`flex items-center px-6 py-2.5 ${currentRoute == 'profile' ? 'text-brand-500' : 'text-gray-500'} hover:text-brand-500 group`}>
-                        Profile
+                        Profil
                     </a>
 
                     <a href="/logout" className={`flex items-center px-6 py-2.5 text-gray-500 hover:text-brand-500 group`}>

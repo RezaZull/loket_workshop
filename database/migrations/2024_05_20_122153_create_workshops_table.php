@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('workshops', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name',50);
             $table->date('date');
             $table->text('detail');
             $table->string('img_path');
-            $table->string('study_program');
+            $table->string('study_program',80);
+            $table->bigInteger('price',false);
             $table->timestamps();
             $table->softDeletes();
         });

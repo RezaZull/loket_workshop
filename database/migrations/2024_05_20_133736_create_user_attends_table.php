@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('workshop_id');
-            $table->string('virtual_account')->nullable();
+            $table->string('virtual_account',16)->nullable();
             $table->enum('status',['Menunggu VA','Menunggu Pembayaran','Menunggu Konfirmasi','Terdaftar','Tertolak']);
             $table->string('img_path')->nullable();
-            $table->string('message')->nullable();
+            $table->string('message',50)->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');

@@ -10,7 +10,7 @@ export default function Index(props) {
             {flash.session && <Alert title={flash.session.title} message={flash.session.message} />}
             <Head title={props.title} />
             <div className="flex flex-col gap-8 m-6">
-                <div className="flex w-full">
+                <div className="flex w-full md-max:flex-col md-max:items-center">
                     <div className="flex flex-col items-center gap-4 w-2/5">
                         <div className="avatar">
                             <div className="h-40 object-cover max-w-40">
@@ -22,7 +22,7 @@ export default function Index(props) {
                             <h2>{auth.user.npm}</h2>
                         </div>
                     </div>
-                    <div className="card bg-base-100 shadow-xl p-10 w-3/5 justify-between ">
+                    <div className="card bg-base-100 shadow-xl p-10 w-3/5 justify-between flex-col gap-4">
                         <h2> Email : {auth.user.email}</h2>
                         <h2> Phone : {auth.user.phone}</h2>
                         <h2> Jurusan : {auth.user.study_program}</h2>
@@ -56,7 +56,11 @@ export default function Index(props) {
                                         </tr>
                                     )
                                 })}
-
+                                {data.data.length == 0 ?
+                                    <tr>
+                                        <td colSpan="4" className="text-center"> Tidak ada data </td>
+                                    </tr> : null
+                                }
                             </tbody>
                         </table>
                         <div className="join justify-center">

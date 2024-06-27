@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\UserAttend;
 use App\Models\Workshop;
 use Illuminate\Http\Request;
@@ -101,12 +102,12 @@ class CustomUser extends Controller
             $image_path = $user->img_path;
         }
         $request->validate([
-            'name' => 'required',
-            'npm' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'name' => 'required|max:50',
+            'npm' => 'required|max:8',
+            'email' => 'required|max:50',
+            'phone' => 'required|max:13',
             'is_admin' => 'required',
-            'study_program' => 'required',
+            'study_program' => 'required|max:30',
         ]);
         $user->update([
             'name' => $request->name,

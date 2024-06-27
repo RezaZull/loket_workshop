@@ -49,10 +49,11 @@ class WorkshopController extends Controller
             $image_path = 'workshop/default.png';
         }
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:50',
             'date' => 'required',
             'detail' => 'required',
-            'study_program' => 'required',
+            'study_program' => 'required|max:80',
+            'price'=>'required|max:20'
         ]);
         Workshop::create([
             'name' => $request->name,
@@ -60,6 +61,7 @@ class WorkshopController extends Controller
             'detail' => $request->detail,
             'study_program' => $request->study_program,
             'img_path' => $image_path,
+            'price' => $request->price,
         ]);
         return redirect()->route('admin.workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil ditambah']);
     }
@@ -103,10 +105,11 @@ class WorkshopController extends Controller
             $image_path = $workshop->img_path;
         }
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:50',
             'date' => 'required',
             'detail' => 'required',
-            'study_program' => 'required',
+            'study_program' => 'required|max:80',
+            'price'=>'required|max:20'
         ]);
         $workshop->update([
             'name' => $request->name,
@@ -114,6 +117,7 @@ class WorkshopController extends Controller
             'detail' => $request->detail,
             'study_program' => $request->study_program,
             'img_path' => $image_path,
+            'price' => $request->price,
         ]);
         return redirect()->route('admin.workshop.index')->with('session',['title'=>'info','message'=>'Data workshop berhasil diubah']);
     }

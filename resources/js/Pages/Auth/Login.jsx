@@ -19,7 +19,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('login'));
+        post(route('actionLogin'));
     };
 
     return (
@@ -37,7 +37,7 @@ export default function Login({ status, canResetPassword }) {
                             <form onSubmit={submit}>
                                 <div className='my-10' >
                                     <Link href="/" className='flex justify-center' >
-                                        <img src="/images/LPUG_FIX.png" className="h-14 fill-current text-gray-500" alt="logo" />
+                                        <img src="/images/WSUG_logo.png" className="h-24 fill-current text-gray-500" alt="logo" />
                                     </Link>
                                 </div>
                                 <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">

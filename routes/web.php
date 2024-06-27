@@ -1,17 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\UserSettingController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CustomAdmin;
-use App\Http\Controllers\CustomUser;
+use App\Http\Controllers\Admin\CustomAdmin;
+use App\Http\Controllers\User\CustomUser;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\UserAttendController;
 use App\Http\Controllers\Admin\WorkshopController;
-use App\Http\Controllers\Admin\WorkshopMajorController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,26 +18,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
 
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'actionLogin'])->name('actionLogin');
 Route::post('/register', [LoginController::class, 'actionRegister'])->name('actionRegister');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

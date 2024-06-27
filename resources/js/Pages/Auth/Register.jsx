@@ -1,11 +1,6 @@
 import { useEffect } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
 import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -43,7 +38,7 @@ export default function Register() {
                         <form onSubmit={submit}>
                             <div className='my-10' >
                                 <Link href="/" className='flex justify-center' >
-                                    <img src="/images/LPUG_FIX.png" className="h-14 fill-current text-gray-500" alt="logo" />
+                                    <img src="/images/WSUG_logo.png" className="h-24 fill-current" alt="logo" />
                                 </Link>
                             </div>
                             <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
@@ -171,7 +166,7 @@ export default function Register() {
                                 Sudah punya akun?
                             </span>
                             <a
-                                href="/login"
+                                href="/"
                                 className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
                             >
                                 Login

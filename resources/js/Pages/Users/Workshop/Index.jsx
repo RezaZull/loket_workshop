@@ -31,7 +31,8 @@ export default function Index(props) {
                                     <p>untuk mahasiswa jurusan {item.study_program}</p>
                                     <p>{item.detail}</p>
                                     <div className="badge badge-info">{item.date}</div>
-                                    <div className="card-actions justify-end">
+                                    <div className="card-actions justify-end items-center">
+                                        <p>Rp {item.price}</p>
                                         {moment(item.date).isAfter() ? (
                                             <button onClick={() => onDaftarClickHandle(item.id)} className="btn btn-primary bg-brand-500 border-none text-white">Daftar Workshop</button>
                                         ) : (

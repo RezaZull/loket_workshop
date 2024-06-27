@@ -9,6 +9,7 @@ export default function Update(props) {
     const [date, SetDate] = useState(new Date(data.date).toISOString().substring(0, 10))
     const [detail, SetDetail] = useState(data.detail)
     const [study_program, SetStudy_program] = useState(data.study_program)
+    const [price, SetPrice] = useState(data.price)
     const [imagesPick, setImagePick] = useState(null)
 
     let onSubmitWorkshop = () => {
@@ -18,6 +19,7 @@ export default function Update(props) {
             date,
             detail,
             study_program,
+            price,
             imagesPick
         }
         router.post(`/admin/workshop/${props.data.id}`, data, { forceFormData: true })
@@ -62,6 +64,15 @@ export default function Update(props) {
                         <input type="text" value={study_program} onChange={(e) => SetStudy_program(e.target.value)} className="input input-bordered w-full " />
                         <div className="label">
                             <InputError message={errors.study_program} />
+                        </div>
+                    </label>
+                    <label className="form-control w-full ">
+                        <div className="label">
+                            <span className="label-text">Harga</span>
+                        </div>
+                        <input type="text" value={price} onChange={(e) => SetPrice(e.target.value)} className="input input-bordered w-full " />
+                        <div className="label">
+                            <InputError message={errors.price} />
                         </div>
                     </label>
                     <label className="form-control w-full ">

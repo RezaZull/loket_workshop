@@ -40,7 +40,7 @@ export default function Index(props) {
                                 <th>#</th>
                                 <th>Workshop</th>
                                 <th>Date</th>
-                                <th>Jurusan</th>
+                                <th>Harga</th>
                                 <th>Status</th>
                                 <th>Pesan</th>
                                 <th>Aksi</th>
@@ -53,7 +53,7 @@ export default function Index(props) {
                                         <td>{idx + 1}</td>
                                         <td>{item.workshop.name}</td>
                                         <td>{item.workshop.date}</td>
-                                        <td>{item.workshop.study_program}</td>
+                                        <td>Rp.{item.workshop.price}</td>
                                         <td>
                                             <span className={`badge border-none text-white badge-primary badge-xl text-sm p-4 ${item.status == 'Menunggu VA' ? 'bg-accent' : item.status == 'Menunggu Konfirmasi' ? 'bg-info' : item.status == 'Terdaftar' ? 'bg-success' : 'bg-error'}`}>
                                                 {item.status}
@@ -62,7 +62,7 @@ export default function Index(props) {
                                         <td>{item.message}</td>
                                         <td>
                                             {
-                                                item.status == 'Menunggu Pembayaran'||item.status =='Tertolak' ?
+                                                item.status == 'Menunggu Pembayaran' || item.status == 'Tertolak' ?
                                                     <button onClick={() => { document.getElementById('Form_UploadVA').showModal(), setSelectedAttend(item) }} className="btn text-white btn-info" >Konfirmasi Pembayaran</button>
                                                     : null
                                             }
@@ -70,7 +70,11 @@ export default function Index(props) {
                                     </tr>
                                 )
                             })}
-
+                            {data.data.length == 0 ?
+                                <tr>
+                                    <td colSpan="7" className="text-center"> Tidak ada data </td>
+                                </tr> : null
+                            }
                         </tbody>
                     </table>
                     <div className="join justify-center">

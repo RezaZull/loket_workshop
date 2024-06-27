@@ -52,6 +52,7 @@ export default function Detail(props) {
                         <p>{data.date}</p>
                         <p>{data.detail}</p>
                         <p>{data.study_program}</p>
+                        <p>Rp.{data.price}</p>
                         <div className="card-actions justify-end">
                             <Link href={`/admin/workshop/${data.id}/edit`} className="btn  bg-brand-500 border-none text-white">Edit</Link>
                         </div>
@@ -101,15 +102,13 @@ export default function Detail(props) {
                                                 {
                                                     data.img_path != null && data.status == 'Menunggu Konfirmasi' ?
                                                         <td>
-                                                            <button className="btn btn-info" onClick={() => { document.getElementById('Konfirm_VA').showModal(), setselectedUserAttend(data) }}>Konfirmasi Blanko</button>
-                                                            {/* <Link href={`/admin/workshop/`} className="btn btn-accent" >Konfirmasi Blanko</Link> */}
+                                                            <button className="btn btn-info" onClick={() => { document.getElementById('Konfirm_VA').showModal(), setselectedUserAttend(data) }}>Konfirmasi Pemabayaran</button>
                                                         </td> : null
                                                 }
                                                 {
                                                     data.status == 'Terdaftar' | data.status == 'Tertolak' ?
                                                         <td>
                                                             <button className="btn btn-primary bg-brand-500 border-none text-white" onClick={() => { document.getElementById('view_VA').showModal(), setselectedUserAttend(data) }}>Lihat Bukti Pembayaran</button>
-                                                            {/* <Link href={`/admin/workshop/`} className="btn btn-accent" >Konfirmasi Blanko</Link> */}
                                                         </td> : null
                                                 }
                                             </tr>
@@ -117,7 +116,11 @@ export default function Detail(props) {
                                         )
                                     })
                                 }
-
+                                {usersAttend.data.length == 0 ?
+                                    <tr>
+                                        <td colSpan="10" className="text-center"> Tidak ada data </td>
+                                    </tr> : null
+                                }
                             </tbody>
                         </table>
                         <div className="join justify-center">
@@ -140,7 +143,7 @@ export default function Detail(props) {
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <div className="flex flex-col gap-4">
-                        <h3 className="font-bold text-lg">Add Virtual Account</h3>
+                        <h3 className="font-bold text-lg">Tambah Virtual Account</h3>
                         <div className="join">
                             <input className="join-item input input-bordered w-full" type="text" value={virtual_account} onChange={(e) => setVirtual_account(e.target.value)} />
                             <button className="btn join-item bg-brand-500 border-none text-white" onClick={() => onSubmitVA()} >Submit</button>
@@ -156,8 +159,8 @@ export default function Detail(props) {
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <div className="flex flex-col gap-4">
-                        <h3 className="font-bold text-lg">Konfirmasi Blanko</h3>
-                        <img className="h-96 self-center" src={`/storage/${selectedUserAttend.img_path}`} alt="blanko_img" />
+                        <h3 className="font-bold text-lg">Konfirmasi Pembayaran</h3>
+                        <img className="h-96 self-center" src={`/storage/${selectedUserAttend.img_path}`} alt="konfirmasi pembayaran" />
                         <p>Virtual Account : {selectedUserAttend.virtual_account}</p>
                         <label className="form-control w-full ">
                             <input type="text" placeholder="Catatan" value={message} onChange={(e) => setMessage(e.target.value)} className="input input-bordered w-full" />
@@ -177,8 +180,8 @@ export default function Detail(props) {
                         <button onClick={resetVA} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <div className="flex flex-col gap-4">
-                        <h3 className="font-bold text-lg"> Blanko</h3>
-                        <img className="h-96 self-center" src={`/storage/${selectedUserAttend.img_path}`} alt="blanko_img" />
+                        <h3 className="font-bold text-lg"> Bukti Pembayaran</h3>
+                        <img className="h-96 self-center" src={`/storage/${selectedUserAttend.img_path}`} alt="bukti pembayaran" />
                         <p className="py-4">Virtual Account : {selectedUserAttend.virtual_account}</p>
                     </div>
                 </div>

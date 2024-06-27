@@ -30,7 +30,7 @@ export default function Insert(props) {
         <GuestLayout auth={props.auth} currentRoute="profile">
             <Head title={props.title} />
             <div className="card bg-base-100 shadow-xl p-5 m-6">
-                <h1 className="text-2xl text-center" >Formulir Mengubah Profile</h1>
+                <h1 className="text-2xl text-center" >Formulir Mengubah Profil</h1>
                 <div className="flex flex-col gap-4">
                     <label className="form-control w-full ">
                         <div className="label">
@@ -66,18 +66,6 @@ export default function Insert(props) {
                         <input type="text" required value={phone} onChange={(e) => SetPhone(e.target.value)} className="input input-bordered w-full " />
                         <div className="label">
                             <InputError message={errors.phone} />
-                        </div>
-                    </label>
-                    <label className="form-control w-full ">
-                        <div className="label">
-                            <span className="label-text">Role*</span>
-                        </div>
-                        <select className="select select-bordered" required value={is_admin} onChange={(e) => SetIs_admin(e.target.value)}>
-                            <option value={1}>Admin</option>
-                            <option value={0}>User</option>
-                        </select>
-                        <div className="label">
-                            <InputError message={errors.is_admin} />
                         </div>
                     </label>
                     <label className="form-control w-full ">

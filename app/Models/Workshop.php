@@ -12,5 +12,5 @@ class Workshop extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable=['name','date','detail','img_path','study_program'];
+    protected $fillable=['name','date','detail','img_path','study_program','price'];
 }

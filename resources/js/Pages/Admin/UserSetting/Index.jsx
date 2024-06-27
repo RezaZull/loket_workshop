@@ -57,6 +57,11 @@ export default function Index(props) {
                                     )
                                 })
                             }
+                            {data.data.length == 0 ?
+                                        <tr>
+                                            <td colSpan="9" className="text-center"> Tidak ada data </td>
+                                        </tr> : null
+                                    }
 
                         </tbody>
                     </table>
